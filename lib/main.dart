@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:tudulis/models/task.dart';
 import 'package:tudulis/ui/home.dart';
 import 'package:tudulis/services/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Database stuff here
+  await Hive.initFlutter();
+  await Hive.openBox("task");
+  Hive.registerAdapter(TaskAdapter());
+
   runApp(
     MultiProvider(
       providers: [
@@ -20,7 +28,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeProvider _themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       title: 'Tudu Lis',
       theme: ThemeData(
@@ -34,7 +41,7 @@ class MyApp extends StatelessWidget {
         drawerTheme: DrawerThemeData(backgroundColor: Colors.grey[900]),
       ),
       debugShowCheckedModeBanner: false,
-      themeMode: _themeProvider.theme,
+      themeMode: Provider.of<ThemeProvider>(context).theme,
       home: const Home(),
     );
   }

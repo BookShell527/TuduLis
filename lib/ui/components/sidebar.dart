@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tudulis/services/theme.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({Key? key, required this.changeIndex}) : super(key: key);
