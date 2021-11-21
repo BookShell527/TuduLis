@@ -5,7 +5,7 @@ import 'package:tudulis/ui/sections/completed.dart';
 import 'package:tudulis/ui/sections/important.dart';
 import 'package:tudulis/ui/sections/today.dart';
 import 'package:tudulis/ui/sections/planned.dart';
-import 'package:tudulis/services/theme.dart';
+import 'package:tudulis/services/theme_service.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider _themeProvider = Provider.of<ThemeProvider>(context);
+    ThemeService _themeProvider = Provider.of<ThemeService>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -76,8 +76,8 @@ class _HomeState extends State<Home> {
                 index: stackIndex,
                 children: const <Widget>[
                   AllSection(),
-                  TodaySection(),
                   ImportantSection(),
+                  TodaySection(),
                   PlannedSection(),
                   CompletedSection(),
                 ],

@@ -1,22 +1,21 @@
 import 'package:hive/hive.dart';
-import 'package:uuid/uuid.dart';
 
 part 'task.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class Task {
   Task({
     required this.title,
     required this.note,
     required this.reminder,
-    required this.dueDate,
     required this.isImportant,
     required this.isCompleted,
     required this.tags,
+    this.dueDate,
   });
 
   @HiveField(0)
-  String id = const Uuid().v4();
+  bool isCompleted;
 
   @HiveField(1)
   String title;
@@ -28,14 +27,11 @@ class Task {
   List<DateTime> reminder;
 
   @HiveField(4)
-  DateTime dueDate;
+  DateTime? dueDate;
 
   @HiveField(6)
   bool isImportant;
 
   @HiveField(7)
-  bool isCompleted;
-
-  @HiveField(8)
   List<String> tags;
 }

@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tudulis/ui/components/add_task.dart';
+import 'package:tudulis/ui/components/add_task/add_task.dart';
 
-class AllSection extends StatefulWidget {
+class AllSection extends StatelessWidget {
   const AllSection({Key? key}) : super(key: key);
 
-  @override
-  _AllSectionState createState() => _AllSectionState();
-}
-
-class _AllSectionState extends State<AllSection> {
   @override
   Widget build(BuildContext context) {
     return Column(

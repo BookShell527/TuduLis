@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Sidebar extends StatefulWidget {
+class Sidebar extends StatelessWidget {
   const Sidebar({Key? key, required this.changeIndex}) : super(key: key);
 
   final Function changeIndex;
 
   @override
-  State<Sidebar> createState() => _SidebarState();
-}
-
-class _SidebarState extends State<Sidebar> {
-  @override
   Widget build(BuildContext context) {
-    // Using animated container so sidebar color change will look more smoothly
     return SizedBox(
       width: 200.0,
       child: Drawer(
@@ -22,27 +16,27 @@ class _SidebarState extends State<Sidebar> {
             ListTile(
               leading: const Icon(Icons.inbox, color: Colors.pink),
               title: const Text("All"),
-              onTap: () => widget.changeIndex(0),
+              onTap: () => changeIndex(0),
             ),
             ListTile(
               leading: const Icon(Icons.star, color: Colors.yellow),
               title: const Text("Important"),
-              onTap: () => widget.changeIndex(1),
+              onTap: () => changeIndex(1),
             ),
             ListTile(
-              leading: const Icon(Icons.today, color: Colors.green),
+              leading: Icon(Icons.today, color: Colors.green[300]),
               title: const Text("Today"),
-              onTap: () => widget.changeIndex(2),
+              onTap: () => changeIndex(2),
             ),
             ListTile(
               leading: const Icon(Icons.schedule, color: Colors.cyan),
               title: const Text("Planned"),
-              onTap: () => widget.changeIndex(3),
+              onTap: () => changeIndex(3),
             ),
             ListTile(
               leading: const Icon(Icons.check, color: Colors.blue),
               title: const Text("Completed"),
-              onTap: () => widget.changeIndex(4),
+              onTap: () => changeIndex(4),
             ),
           ],
         ),

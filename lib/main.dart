@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/models/task.dart';
 import 'package:tudulis/ui/home.dart';
-import 'package:tudulis/services/theme.dart';
+import 'package:tudulis/services/theme_service.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Database stuff here
   await Hive.initFlutter();
-  await Hive.openBox("task");
   Hive.registerAdapter(TaskAdapter());
+  await Hive.openBox<Task>("task");
 
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider<ThemeService>(create: (_) => ThemeService()),
       ],
       child: const MyApp(),
     ),
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         drawerTheme: DrawerThemeData(backgroundColor: Colors.grey[900]),
       ),
       debugShowCheckedModeBanner: false,
-      themeMode: Provider.of<ThemeProvider>(context).theme,
+      themeMode: Provider.of<ThemeService>(context).theme,
       home: const Home(),
     );
   }
