@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PlannedSection extends StatefulWidget {
-  const PlannedSection({Key? key}) : super(key: key);
+class ImportantSection extends StatefulWidget {
+  const ImportantSection({Key? key}) : super(key: key);
 
   @override
-  _PlannedSectionState createState() => _PlannedSectionState();
+  _ImportantSectionState createState() => _ImportantSectionState();
 }
 
-class _PlannedSectionState extends State<PlannedSection> {
+class _ImportantSectionState extends State<ImportantSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,7 +15,7 @@ class _PlannedSectionState extends State<PlannedSection> {
         Row(
           children: const <Widget>[
             Text(
-              "Planned",
+              "Important",
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w600,
