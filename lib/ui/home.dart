@@ -17,7 +17,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int stackIndex = 0;
-  bool _isVisible = true;
 
   changeStackIndex(int newStackIndex) {
     setState(() {
@@ -27,48 +26,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeService _themeProvider = Provider.of<ThemeService>(context);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: const SelectableText("Tudu Lis"),
-        // TODO Animate sidebar with slide animation
-        leading: Tooltip(
-          message: "Open Sidebar",
-          child: IconButton(
-            onPressed: () => setState(() => _isVisible = !_isVisible),
-            icon: const Icon(Icons.menu),
-            splashRadius: 25.0,
-          ),
-        ),
-        actions: <Widget>[
-          Tooltip(
-            message: "Toggle Dark Mode",
-            child: IconButton(
-              onPressed: _themeProvider.toggleTheme,
-              icon: Icon(_themeProvider.isDark
-                  ? Icons.brightness_3
-                  : Icons.brightness_7),
-              splashRadius: 25.0,
-            ),
-          ),
-          Tooltip(
-            message: "Open Settings",
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.settings),
-              splashRadius: 25.0,
-            ),
-          ),
-          const SizedBox(width: 10.0),
-        ],
-      ),
       body: Row(
         children: [
-          Visibility(
-            child: Sidebar(changeIndex: changeStackIndex),
-            visible: _isVisible,
-          ),
+          Sidebar(changeIndex: changeStackIndex),
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(20.0),

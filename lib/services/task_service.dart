@@ -7,10 +7,9 @@ class TaskService {
   final Uuid _uuid = const Uuid();
 
   void addTask(Task task) async {
-    await taskBox.put(_uuid.v4(), task);
+    await taskBox.add(task);
   }
 
-  List<Task> getAllTask() {
-    return taskBox.values.toList();
-  }
+  List<Task> get allTask => taskBox.values.toList();
+  get listenable => taskBox.listenable();
 }

@@ -121,6 +121,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                           tags: tags,
                           dueDate: dueDate,
                         ));
+                        widget.toggleOpen!();
                       },
                       child: const Text("Add task"),
                     ),
@@ -136,7 +137,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                         dueDate == null
                             ? "Due date"
                             : DateFormat(
-                                dueDate?.minute == 0 && dueDate?.hour == 0
+                                (dueDate?.minute == 0 && dueDate?.hour == 0)
                                     ? "EEE, d MMM y"
                                     : "H:mm EEE, d MMM y",
                               ).format(dueDate!),
