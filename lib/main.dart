@@ -9,8 +9,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Database stuff here
-  await Hive.initFlutter();
   Hive.registerAdapter(TaskAdapter());
+  await Hive.initFlutter();
   await Hive.openBox<Task>("task");
 
   runApp(

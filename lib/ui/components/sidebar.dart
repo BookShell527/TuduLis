@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tudulis/services/theme_service.dart';
 
 class Sidebar extends StatefulWidget {
-  Sidebar({Key? key, required this.changeIndex}) : super(key: key);
+  const Sidebar({Key? key, required this.changeIndex}) : super(key: key);
 
   final Function changeIndex;
 
@@ -16,7 +16,7 @@ class _SidebarState extends State<Sidebar> {
 
   void toggleDense() => setState(() => isDense = !isDense);
 
-  List<Widget> buildBottomButton(ThemeService themeService) {
+  List<Widget> _buildBottomButton(ThemeService themeService) {
     return [
       IconButton(
         onPressed: themeService.toggleTheme,
@@ -47,10 +47,11 @@ class _SidebarState extends State<Sidebar> {
       child: Drawer(
         elevation: 0.0,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
               leading: const Icon(Icons.inbox, color: Colors.pink),
-              title: isDense ? null : const Text("Scheduled"),
+              title: isDense ? null : const Text("All"),
               onTap: () => widget.changeIndex(0),
             ),
             ListTile(
@@ -75,12 +76,8 @@ class _SidebarState extends State<Sidebar> {
             ),
             const Spacer(),
             isDense
-                ? Column(
-                    children: buildBottomButton(_themeService),
-                  )
-                : Row(
-                    children: buildBottomButton(_themeService),
-                  ),
+                ? Column(children: _buildBottomButton(_themeService))
+                : Row(children: _buildBottomButton(_themeService)),
           ],
         ),
       ),

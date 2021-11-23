@@ -112,15 +112,15 @@ class _AddTaskFormState extends State<AddTaskForm> {
                   children: <Widget>[
                     TextButton(
                       onPressed: () {
-                        _taskService.addTask(Task(
+                        _taskService.addTask(
                           title: title,
                           note: note,
+                          tags: tags,
+                          dueDate: dueDate,
                           reminder: reminder,
                           isImportant: isImportant,
                           isCompleted: isCompleted,
-                          tags: tags,
-                          dueDate: dueDate,
-                        ));
+                        );
                         widget.toggleOpen!();
                       },
                       child: const Text("Add task"),

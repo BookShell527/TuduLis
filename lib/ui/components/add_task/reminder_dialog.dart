@@ -67,8 +67,6 @@ class _ReminderDialogState extends State<ReminderDialog> {
             }),
             const Divider(),
             ListTile(
-              textColor: Colors.blue,
-              iconColor: Colors.blue,
               title: const Text("Add reminder"),
               leading: const Icon(Icons.add),
               onTap: () async {
