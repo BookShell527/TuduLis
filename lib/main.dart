@@ -12,7 +12,6 @@ void main() async {
 
   Store store = await openStore();
   Box<Task> taskBox = store.box<Task>();
-  taskBox.removeAll();
 
   runApp(
     MultiProvider(

@@ -44,13 +44,18 @@ class _AllSectionState extends State<AllSection> {
           ),
           const AddTask(),
           const SizedBox(height: 5.0),
-          ListView.builder(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: _taskService.getAllTask.length,
-            itemBuilder: (BuildContext context, int i) {
-              return TaskTile(task: _taskService.getAllTask[i]);
-            },
+          Theme(
+            data: Theme.of(context)
+                .copyWith(splashFactory: NoSplash.splashFactory),
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: _taskService.getAllTask.length,
+              itemBuilder: (BuildContext context, int i) {
+                Task task = _taskService.getAllTask[i];
+                return TaskTile(task: task);
+              },
+            ),
           ),
         ],
       ),
