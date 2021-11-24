@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// if this function is called for reminder, hour and minute will be always included
 Future<DateTime?> getDate(BuildContext context, bool isReminder) async {
   DateTime? date = await showDatePicker(
     context: context,

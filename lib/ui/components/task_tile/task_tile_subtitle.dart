@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/models/task.dart';
 import 'package:tudulis/services/task_service.dart';
-import 'package:tudulis/shared/get_formatted_date.dart';
+import 'package:tudulis/shared/format_date.dart';
 import 'package:tudulis/shared/date_picker.dart';
-import 'package:tudulis/ui/components/add_task/reminder_dialog.dart';
 
 class TaskTileSubtitle extends StatelessWidget {
-  const TaskTileSubtitle(
-      {Key? key, required this.task, required this.taskService})
-      : super(key: key);
+  const TaskTileSubtitle({
+    Key? key,
+    required this.task,
+    required this.taskService,
+  }) : super(key: key);
 
   final Task task;
   final TaskService taskService;
@@ -29,7 +30,7 @@ class TaskTileSubtitle extends StatelessWidget {
                   if (date != null) taskService.updateDueDate(task, date);
                 },
                 label: Text(
-                  getDueDate(task.dueDate ?? DateTime.now(), false),
+                  formatDate(task.dueDate ?? DateTime.now(), false),
                 ),
                 icon: const Icon(
                   Icons.calendar_today,
@@ -44,11 +45,11 @@ class TaskTileSubtitle extends StatelessWidget {
                   splashFactory: NoSplash.splashFactory,
                 ),
               ),
-            if (task.reminder.isNotEmpty)
+            if (task.reminder != null)
               TextButton.icon(
                 onPressed: () {},
                 label: Text(
-                  getDueDate(DateTime.parse(task.reminder[0]), true),
+                  formatDate(task.reminder!, true),
                 ),
                 icon: const Icon(
                   Icons.alarm,

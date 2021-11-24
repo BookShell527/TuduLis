@@ -15,7 +15,7 @@ class TaskTile extends StatelessWidget {
   bool _isWithSubtitle() {
     return task.dueDate != null ||
         task.note.isNotEmpty ||
-        task.reminder.isNotEmpty;
+        task.reminder != null;
   }
 
   @override

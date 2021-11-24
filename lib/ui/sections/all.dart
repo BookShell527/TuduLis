@@ -49,11 +49,7 @@ class _AllSectionState extends State<AllSection> {
             shrinkWrap: true,
             itemCount: _taskService.getAllTask.length,
             itemBuilder: (BuildContext context, int i) {
-              Task task = _taskService.getAllTask[i];
-              return TaskTile(
-                key: Key(task.uid),
-                task: task,
-              );
+              return TaskTile(task: _taskService.getAllTask[i]);
             },
           ),
         ],

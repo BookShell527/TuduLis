@@ -15,7 +15,7 @@ class TaskService with ChangeNotifier {
     required String title,
     required String note,
     required List<String> tags,
-    required List<String> reminder,
+    DateTime? reminder,
     DateTime? dueDate,
   }) {
     taskBox.put(Task(
@@ -50,13 +50,11 @@ class TaskService with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateReminder(Task task, List<String> newList) {
+  void updateReminder(Task task, DateTime newList) {
     task.updateReminder(newList);
     taskBox.put(task);
     notifyListeners();
   }
-
-  List<String> getTaskReminder(int id) => taskBox.get(id)!.reminder;
 
   List<Task> get getUncompleted {
     Query<Task> query = taskBox.query(Task_.isCompleted.equals(false)).build();

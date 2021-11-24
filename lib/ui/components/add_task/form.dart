@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/services/task_service.dart';
-import 'package:tudulis/shared/get_formatted_date.dart';
-import 'package:tudulis/ui/components/reminder_dialog.dart';
+import 'package:tudulis/shared/format_date.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/shared/date_picker.dart';
 import 'package:tudulis/shared/checkbox_color.dart';
+import 'package:intl/intl.dart';
 
 class AddTaskForm extends StatefulWidget {
   const AddTaskForm({Key? key, required this.toggleOpen}) : super(key: key);
@@ -27,24 +27,8 @@ class _AddTaskFormState extends State<AddTaskForm> {
   String title = "";
   String note = "";
   DateTime? dueDate;
-  List<String> reminder = [];
+  DateTime? reminder;
   List<String> tags = [];
-
-  void addReminder(Function setState) async {
-    DateTime? newReminder = await getDate(context, true);
-    if (newReminder == null) return;
-
-    List<String> newReminderList = [...reminder, newReminder.toString()];
-    newReminderList.sort((a, b) => a.compareTo(b));
-
-    setState(() => reminder = newReminderList);
-  }
-
-  void deleteReminder(String deletedReminder, Function setState) {
-    final List<String> newReminder =
-        reminder.where((m) => m != deletedReminder).toList();
-    setState(() => reminder = newReminder);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +107,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                         label: Text(
                           dueDate == null
                               ? "Due date"
-                              : getDueDate(dueDate!, false),
+                              : formatDate(dueDate!, false),
                         ),
                         onPressed: () async {
                           DateTime? date = await getDate(context, false);
@@ -136,18 +120,15 @@ class _AddTaskFormState extends State<AddTaskForm> {
                           splashFactory: NoSplash.splashFactory,
                         ),
                         icon: const Icon(Icons.alarm, size: 18.0),
-                        label: const Text("Reminder"),
-                        onPressed: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context) => StatefulBuilder(
-                            builder: (context, setState) => ReminderDialog(
-                              addReminder: addReminder,
-                              deleteReminder: deleteReminder,
-                              reminder: reminder,
-                              setState: setState,
-                            ),
-                          ),
+                        label: Text(
+                          reminder == null
+                              ? "Reminder"
+                              : formatDate(reminder!, true),
                         ),
+                        onPressed: () async {
+                          DateTime? date = await getDate(context, true);
+                          setState(() => reminder = date);
+                        },
                       ),
                       TextButton.icon(
                         icon: const Icon(Icons.tag_sharp, size: 18.0),

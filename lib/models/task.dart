@@ -6,12 +6,12 @@ class Task {
     required this.uid,
     required this.title,
     required this.note,
-    required this.reminder,
     required this.isImportant,
     required this.isCompleted,
     required this.tags,
     required this.createdAt,
     required this.lastEditedAt,
+    this.reminder,
     this.dueDate,
     this.id = 0,
   });
@@ -29,7 +29,7 @@ class Task {
 
   // Objectbox only only support List<String> data type
   // So we need to convert date time to String
-  List<String> reminder;
+  DateTime? reminder;
 
   @Property(type: PropertyType.date)
   DateTime createdAt;
@@ -55,7 +55,7 @@ class Task {
     lastEditedAt = DateTime.now();
   }
 
-  void updateReminder(List<String> newReminder) {
+  void updateReminder(DateTime newReminder) {
     reminder = newReminder;
     lastEditedAt = DateTime.now();
   }

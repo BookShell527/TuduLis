@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-String getDueDate(DateTime dueDate, bool isReminder) {
+String formatDate(DateTime dueDate, bool isReminder) {
   final now = DateTime.now();
   final today = DateTime(now.year, now.month, now.day);
   final yesterday = DateTime(now.year, now.month, now.day - 1);
