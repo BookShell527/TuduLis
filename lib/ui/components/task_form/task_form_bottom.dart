@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/shared/format_date.dart';
 
-class AddTaskFormBottom extends StatelessWidget {
-  const AddTaskFormBottom({
+class TaskFormBottom extends StatelessWidget {
+  const TaskFormBottom({
     Key? key,
     required this.handleSubmit,
     required this.toggleOpen,
@@ -12,6 +12,7 @@ class AddTaskFormBottom extends StatelessWidget {
     required this.isImportant,
     required this.toggleImportant,
     required this.changeDate,
+    this.isUpdate = false,
   }) : super(key: key);
 
   final void Function() handleSubmit;
@@ -22,6 +23,7 @@ class AddTaskFormBottom extends StatelessWidget {
   final DateTime? dueDate;
   final DateTime? reminder;
   final bool isImportant;
+  final bool isUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class AddTaskFormBottom extends StatelessWidget {
       children: <Widget>[
         TextButton(
           onPressed: title.isEmpty ? null : handleSubmit,
-          child: const Text("Add task"),
+          child: Text(isUpdate ? "Update task" : "Add task"),
           style: TextButton.styleFrom(
             splashFactory: NoSplash.splashFactory,
           ),
@@ -42,7 +44,7 @@ class AddTaskFormBottom extends StatelessWidget {
             splashFactory: NoSplash.splashFactory,
           ),
           label: Text(
-            dueDate == null ? "Due date" : formatDate(dueDate!, false),
+            dueDate == null ? "Due date" : formatDate(dueDate!),
           ),
           onPressed: () => changeDate(false),
         ),
@@ -53,7 +55,9 @@ class AddTaskFormBottom extends StatelessWidget {
           ),
           icon: const Icon(Icons.alarm, size: 18.0),
           label: Text(
-            reminder == null ? "Reminder" : formatDate(reminder!, true),
+            reminder == null
+                ? "Reminder"
+                : formatDate(reminder!, isReminder: true),
           ),
           onPressed: () => changeDate(true),
         ),

@@ -26,40 +26,35 @@ class TaskTileSubtitle extends StatelessWidget {
             if (task.dueDate != null)
               TextButton.icon(
                 onPressed: () async {
-                  DateTime? date = await getDate(context, false);
+                  DateTime? date = await getDate(context);
                   if (date != null) taskService.updateDueDate(task, date);
                 },
                 label: Text(
-                  formatDate(task.dueDate ?? DateTime.now(), false),
+                  formatDate(task.dueDate!),
                 ),
                 icon: const Icon(
                   Icons.calendar_today,
                   size: 14.0,
                 ),
                 style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 0.0,
-                    horizontal: 8.0,
-                  ),
                   primary: Colors.cyan,
                   splashFactory: NoSplash.splashFactory,
                 ),
               ),
             if (task.reminder != null)
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () async {
+                  DateTime? date = await getDate(context, isReminder: true);
+                  if (date != null) taskService.updateReminder(task, date);
+                },
                 label: Text(
-                  formatDate(task.reminder!, true),
+                  formatDate(task.reminder!, isReminder: true),
                 ),
                 icon: const Icon(
                   Icons.alarm,
                   size: 14.0,
                 ),
                 style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 0.0,
-                    horizontal: 8.0,
-                  ),
                   primary: Colors.teal,
                   splashFactory: NoSplash.splashFactory,
                 ),

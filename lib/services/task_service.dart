@@ -9,7 +9,7 @@ class TaskService with ChangeNotifier {
 
   TaskService({required this.taskBox});
 
-  void addTask({
+  void putTask({
     required bool isImportant,
     required bool isCompleted,
     required String title,
@@ -17,8 +17,10 @@ class TaskService with ChangeNotifier {
     required List<String> tags,
     DateTime? reminder,
     DateTime? dueDate,
+    int? id,
   }) {
     taskBox.put(Task(
+      id: id ?? 0,
       uid: _uuid.v4(),
       title: title,
       note: note,

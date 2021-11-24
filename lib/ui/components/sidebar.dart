@@ -47,6 +47,15 @@ class _SidebarState extends State<Sidebar> {
   Widget build(BuildContext context) {
     ThemeService _themeService = Provider.of<ThemeService>(context);
     // TODO pls animate this
+
+    Map<int, List> _tileList = {
+      0: [Icons.inbox, Colors.pink, "All"],
+      1: [Icons.star, Colors.yellow, "Important"],
+      2: [Icons.today, Colors.green[300], "Today"],
+      3: [Icons.schedule, Colors.cyan, "Scheduled"],
+      4: [Icons.check, Colors.blue, "Completed"],
+    };
+
     return SizedBox(
       width: isDense ? 55.0 : 200.0,
       child: Drawer(
@@ -54,36 +63,14 @@ class _SidebarState extends State<Sidebar> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.inbox, color: Colors.pink),
-              title: isDense ? null : const Text("All"),
-              onTap: () => widget.changeIndex(0),
-              selected: widget.index == 0,
-            ),
-            ListTile(
-              leading: const Icon(Icons.star, color: Colors.yellow),
-              title: isDense ? null : const Text("Important"),
-              onTap: () => widget.changeIndex(1),
-              selected: widget.index == 1,
-            ),
-            ListTile(
-              leading: Icon(Icons.today, color: Colors.green[300]),
-              title: isDense ? null : const Text("Today"),
-              onTap: () => widget.changeIndex(2),
-              selected: widget.index == 2,
-            ),
-            ListTile(
-              leading: const Icon(Icons.schedule, color: Colors.cyan),
-              title: isDense ? null : const Text("Scheduled"),
-              onTap: () => widget.changeIndex(3),
-              selected: widget.index == 3,
-            ),
-            ListTile(
-              leading: const Icon(Icons.check, color: Colors.blue),
-              title: isDense ? null : const Text("Completed"),
-              onTap: () => widget.changeIndex(4),
-              selected: widget.index == 4,
-            ),
+            ..._tileList.entries.map((e) {
+              return ListTile(
+                leading: Icon(e.value[0], color: e.value[1]),
+                title: isDense ? null : Text(e.value[2]),
+                onTap: () => widget.changeIndex(e.key),
+                selected: widget.index == e.key,
+              );
+            }).toList(),
             const Spacer(),
             isDense
                 ? Column(children: _buildBottomButton(_themeService))

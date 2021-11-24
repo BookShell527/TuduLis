@@ -8,9 +8,11 @@ class TaskTile extends StatelessWidget {
   const TaskTile({
     Key? key,
     required this.task,
+    required this.toggleOpen,
   }) : super(key: key);
 
   final Task task;
+  final Function() toggleOpen;
 
   bool _isWithSubtitle() {
     return task.dueDate != null ||
@@ -28,6 +30,16 @@ class TaskTile extends StatelessWidget {
         value: task.isCompleted,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         activeColor: Colors.blue,
+        secondary: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.edit),
+              splashRadius: 0.1,
+              onPressed: toggleOpen,
+            ),
+          ],
+        ),
         onChanged: (val) {
           _taskService.toggleCompleted(task, val!);
         },

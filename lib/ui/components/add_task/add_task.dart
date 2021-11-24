@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/ui/components/add_task/button.dart';
-import 'package:tudulis/ui/components/add_task/form.dart';
+import 'package:tudulis/ui/components/task_form/task_form.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return isOpened
-        ? AddTaskForm(toggleOpen: toggleOpen)
+        ? TaskForm(toggleOpen: toggleOpen)
         : AddTaskButton(toggleOpen: toggleOpen);
   }
 }

@@ -1,38 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/services/task_service.dart';
-import 'package:tudulis/shared/format_date.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/shared/date_picker.dart';
 import 'package:tudulis/shared/checkbox_color.dart';
-import 'package:intl/intl.dart';
-import 'package:tudulis/ui/components/add_task/form_bottom.dart';
+import 'package:tudulis/ui/components/task_form/task_form_bottom.dart';
+import 'package:tudulis/models/task.dart';
 
-class AddTaskForm extends StatefulWidget {
-  const AddTaskForm({Key? key, required this.toggleOpen}) : super(key: key);
+class TaskForm extends StatefulWidget {
+  TaskForm({Key? key, required this.toggleOpen, this.task}) : super(key: key);
+
   final void Function()? toggleOpen;
+  Task? task;
 
   @override
-  _AddTaskFormState createState() => _AddTaskFormState();
+  _TaskFormState createState() => _TaskFormState();
 }
 
-class _AddTaskFormState extends State<AddTaskForm> {
+class _TaskFormState extends State<TaskForm> {
   // style related variable
   final InputDecoration _inputDecoration = const InputDecoration(
     isDense: true,
     border: InputBorder.none,
   );
 
-  // form state
-  bool isImportant = false;
-  bool isCompleted = false;
-  String title = "";
-  String note = "";
-  DateTime? dueDate;
-  DateTime? reminder;
-  List<String> tags = [];
+  late bool isImportant;
+  late bool isCompleted;
+  late String title;
+  late String note;
+  late DateTime? dueDate;
+  late DateTime? reminder;
+  late List<String> tags;
+
+  @override
+  void initState() {
+    super.initState();
+    isImportant = widget.task?.isImportant ?? false;
+    isCompleted = widget.task?.isCompleted ?? false;
+    title = widget.task?.title ?? "";
+    note = widget.task?.note ?? "";
+    dueDate = widget.task?.dueDate;
+    reminder = widget.task?.dueDate;
+    tags = widget.task?.tags ?? [];
+  }
 
   void changeDate(bool isReminder) async {
-    DateTime? date = await getDate(context, isReminder);
+    DateTime? date = await getDate(context, isReminder: isReminder);
     if (isReminder) {
       setState(() => reminder = date);
     } else {
@@ -49,7 +61,8 @@ class _AddTaskFormState extends State<AddTaskForm> {
     final TaskService _taskService = Provider.of<TaskService>(context);
 
     void _handleSubmit() {
-      _taskService.addTask(
+      _taskService.putTask(
+        id: widget.task?.id,
         title: title,
         note: note,
         tags: tags,
@@ -87,6 +100,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                 TextFormField(
                   decoration: _inputDecoration.copyWith(hintText: "Title"),
                   onChanged: (val) => setState(() => title = val),
+                  initialValue: title,
                 ),
                 TextFormField(
                   maxLines: null,
@@ -99,8 +113,9 @@ class _AddTaskFormState extends State<AddTaskForm> {
                     hintText: "Note for this task...",
                   ),
                   onChanged: (val) => setState(() => note = val),
+                  initialValue: note,
                 ),
-                AddTaskFormBottom(
+                TaskFormBottom(
                   handleSubmit: _handleSubmit,
                   toggleOpen: widget.toggleOpen!,
                   title: title,
@@ -109,6 +124,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                   isImportant: isImportant,
                   toggleImportant: toggleImportant,
                   changeDate: changeDate,
+                  isUpdate: widget.task != null,
                 ),
               ],
             ),

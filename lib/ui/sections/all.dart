@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/ui/components/add_task/add_task.dart';
+import 'package:tudulis/ui/components/task_switcher.dart';
 import 'package:tudulis/ui/components/task_tile/task_tile.dart';
 import 'package:tudulis/models/task.dart';
 
@@ -44,18 +45,14 @@ class _AllSectionState extends State<AllSection> {
           ),
           const AddTask(),
           const SizedBox(height: 5.0),
-          Theme(
-            data: Theme.of(context)
-                .copyWith(splashFactory: NoSplash.splashFactory),
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: _taskService.getAllTask.length,
-              itemBuilder: (BuildContext context, int i) {
-                Task task = _taskService.getAllTask[i];
-                return TaskTile(task: task);
-              },
-            ),
+          ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: _taskService.getAllTask.length,
+            itemBuilder: (BuildContext context, int i) {
+              Task task = _taskService.getAllTask[i];
+              return TaskSwitcher(task: task);
+            },
           ),
         ],
       ),
