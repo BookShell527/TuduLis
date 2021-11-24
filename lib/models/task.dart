@@ -49,4 +49,14 @@ class Task {
     isImportant = newValue;
     lastEditedAt = DateTime.now();
   }
+
+  void updateDueDate(DateTime date) {
+    dueDate = date;
+    lastEditedAt = DateTime.now();
+  }
+
+  void updateReminder(List<String> newReminder) {
+    reminder = newReminder;
+    lastEditedAt = DateTime.now();
+  }
 }

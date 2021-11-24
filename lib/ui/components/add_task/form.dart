@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/shared/get_formatted_date.dart';
-import 'package:tudulis/ui/components/add_task/reminder_dialog.dart';
+import 'package:tudulis/ui/components/reminder_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/shared/date_picker.dart';
 import 'package:tudulis/shared/checkbox_color.dart';

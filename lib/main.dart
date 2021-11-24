@@ -17,7 +17,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<ThemeService>(create: (_) => ThemeService()),
-        ChangeNotifierProvider<TaskService>(create: (_) => TaskService(taskBox: taskBox)),
+        ChangeNotifierProvider<TaskService>(
+            create: (_) => TaskService(taskBox: taskBox)),
       ],
       child: const MyApp(),
     ),
