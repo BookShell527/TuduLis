@@ -1,10 +1,13 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter/material.dart';
 import 'package:tudulis/models/task.dart';
+import 'package:tudulis/objectbox.g.dart';
 import 'package:uuid/uuid.dart';
 
-class TaskService {
-  final Box<Task> taskBox = Hive.box<Task>("task");
+class TaskService with ChangeNotifier {
   final Uuid _uuid = const Uuid();
+  final Box<Task> taskBox;
+
+  TaskService({required this.taskBox});
 
   void addTask({
     required bool isImportant,
@@ -12,29 +15,44 @@ class TaskService {
     required String title,
     required String note,
     required List<String> tags,
-    required List<DateTime> reminder,
+    required List<String> reminder,
     DateTime? dueDate,
-  }) async {
-    await taskBox.add(Task(
-      id: _uuid.v4(),
-      isImportant: isImportant,
+  }) {
+    taskBox.put(Task(
+      uid: _uuid.v4(),
       title: title,
       note: note,
-      tags: tags,
       reminder: reminder,
+      isImportant: isImportant,
       isCompleted: isCompleted,
+      dueDate: dueDate,
+      tags: tags,
       createdAt: DateTime.now(),
       lastEditedAt: DateTime.now(),
-      dueDate: dueDate,
     ));
+    notifyListeners();
   }
 
-  void reorderTask(int oldIndex, int newIndex) async {}
-
-  void deleteTask(int index) async {
-    await taskBox.deleteAt(index);
+  void toggleCompleted(Task task, bool newValue) {
+    task.toggleCompleted(newValue);
+    taskBox.put(task);
+    notifyListeners();
   }
 
-  List<Task> get allTask => taskBox.values.toList();
-  get listenable => taskBox.listenable();
+  void deleteTask(int id) {
+    taskBox.remove(id);
+    notifyListeners();
+  }
+
+
+  List<Task> get getUncompleted {
+    Query<Task> query = taskBox.query(Task_.isCompleted.equals(false)).build();
+    return query.find();
+  }
+  List<Task> get getCompleted {
+    Query<Task> query = taskBox.query(Task_.isCompleted.equals(true)).build();
+    return query.find();
+  }
+
+  List<Task> get getAllTask => taskBox.getAll();
 }

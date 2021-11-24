@@ -16,10 +16,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int stackIndex = 0;
 
-  changeStackIndex(int newStackIndex) {
-    setState(() {
-      stackIndex = newStackIndex;
-    });
+  void changeStackIndex(int newStackIndex) {
+    setState(() => stackIndex = newStackIndex);
   }
 
   @override
@@ -27,7 +25,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Row(
         children: [
-          Sidebar(changeIndex: changeStackIndex),
+          Sidebar(changeIndex: changeStackIndex, index: stackIndex),
           Expanded(
             child: ScrollConfiguration(
               behavior: ScrollConfiguration.of(context).copyWith(

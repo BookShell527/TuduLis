@@ -3,9 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:tudulis/services/theme_service.dart';
 
 class Sidebar extends StatefulWidget {
-  const Sidebar({Key? key, required this.changeIndex}) : super(key: key);
+  const Sidebar({
+    Key? key,
+    required this.changeIndex,
+    required this.index,
+  }) : super(key: key);
 
   final Function changeIndex;
+  final int index;
 
   @override
   State<Sidebar> createState() => _SidebarState();
@@ -53,26 +58,31 @@ class _SidebarState extends State<Sidebar> {
               leading: const Icon(Icons.inbox, color: Colors.pink),
               title: isDense ? null : const Text("All"),
               onTap: () => widget.changeIndex(0),
+              selected: widget.index == 0,
             ),
             ListTile(
               leading: const Icon(Icons.star, color: Colors.yellow),
               title: isDense ? null : const Text("Important"),
               onTap: () => widget.changeIndex(1),
+              selected: widget.index == 1,
             ),
             ListTile(
               leading: Icon(Icons.today, color: Colors.green[300]),
               title: isDense ? null : const Text("Today"),
               onTap: () => widget.changeIndex(2),
+              selected: widget.index == 2,
             ),
             ListTile(
               leading: const Icon(Icons.schedule, color: Colors.cyan),
               title: isDense ? null : const Text("Scheduled"),
               onTap: () => widget.changeIndex(3),
+              selected: widget.index == 3,
             ),
             ListTile(
               leading: const Icon(Icons.check, color: Colors.blue),
               title: isDense ? null : const Text("Completed"),
               onTap: () => widget.changeIndex(4),
+              selected: widget.index == 4,
             ),
             const Spacer(),
             isDense

@@ -1,11 +1,9 @@
-import 'package:hive/hive.dart';
+import 'package:objectbox/objectbox.dart';
 
-part 'task.g.dart';
-
-@HiveType(typeId: 1)
+@Entity()
 class Task {
   Task({
-    required this.id,
+    required this.uid,
     required this.title,
     required this.note,
     required this.reminder,
@@ -15,35 +13,40 @@ class Task {
     required this.createdAt,
     required this.lastEditedAt,
     this.dueDate,
+    this.id = 0,
   });
 
-  @HiveField(0)
-  String id;
+  int id;
 
-  @HiveField(1)
+  @Index()
+  String uid;
+
   String title;
-
-  @HiveField(2)
   String note;
-
-  @HiveField(3)
-  List<DateTime> reminder;
-
-  @HiveField(4)
-  DateTime? dueDate;
-
-  @HiveField(5)
-  bool isCompleted;
-
-  @HiveField(6)
   bool isImportant;
-
-  @HiveField(7)
+  bool isCompleted;
   List<String> tags;
 
-  @HiveField(8)
+  // Objectbox only only support List<String> data type
+  // So we need to convert date time to String
+  List<String> reminder;
+
+  @Property(type: PropertyType.date)
   DateTime createdAt;
 
-  @HiveField(9)
+  @Property(type: PropertyType.date)
   DateTime lastEditedAt;
+
+  @Property(type: PropertyType.date)
+  DateTime? dueDate;
+
+  void toggleCompleted(bool newValue) {
+    isCompleted = newValue;
+    lastEditedAt = DateTime.now();
+  }
+
+  void toggleImportant(bool newValue) {
+    isImportant = newValue;
+    lastEditedAt = DateTime.now();
+  }
 }
