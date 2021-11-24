@@ -34,6 +34,11 @@ class TaskTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             IconButton(
+              icon: const Icon(Icons.delete),
+              splashRadius: 0.1,
+              onPressed: () => _taskService.deleteTask(task.id),
+            ),
+            IconButton(
               icon: const Icon(Icons.edit),
               splashRadius: 0.1,
               onPressed: toggleOpen,
