@@ -34,14 +34,22 @@ class TaskTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             IconButton(
-              icon: const Icon(Icons.delete),
+              icon: Icon(
+                task.isImportant ? Icons.star : Icons.star_outline,
+                color: Colors.blue,
+              ),
               splashRadius: 0.1,
-              onPressed: () => _taskService.deleteTask(task.id),
+              onPressed: () => _taskService.toggleImportant(task),
             ),
             IconButton(
               icon: const Icon(Icons.edit),
               splashRadius: 0.1,
               onPressed: toggleOpen,
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              splashRadius: 0.1,
+              onPressed: () => _taskService.deleteTask(task.id),
             ),
           ],
         ),

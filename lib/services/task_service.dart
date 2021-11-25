@@ -41,6 +41,12 @@ class TaskService with ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleImportant(Task task) {
+    task.toggleImportant();
+    taskBox.put(task);
+    notifyListeners();
+  }
+
   void deleteTask(int id) {
     taskBox.remove(id);
     notifyListeners();
@@ -66,6 +72,23 @@ class TaskService with ChangeNotifier {
   List<Task> get getCompleted {
     Query<Task> query = taskBox.query(Task_.isCompleted.equals(true)).build();
     return query.find();
+  }
+
+  List<Task> get getImportant {
+    Query<Task> query = taskBox.query(Task_.isImportant.equals(true)).build();
+    return query.find();
+  }
+
+  List<Task> get getPlannedTask {
+    return getAllTask.where((Task task) => task.dueDate != null).toList();
+  }
+
+  List<Task> get getTodayTask {
+    return getAllTask.where((Task task) {
+      return (task.dueDate?.day == DateTime.now().day) &&
+          (task.dueDate?.month == DateTime.now().month) &&
+          (task.dueDate?.year == DateTime.now().year);
+    }).toList();
   }
 
   List<Task> get getAllTask => taskBox.getAll();

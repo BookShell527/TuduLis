@@ -19,7 +19,17 @@ class _TaskWrapperState extends State<TaskWrapper> {
   @override
   Widget build(BuildContext context) {
     return isOpened
-        ? TaskForm(toggleOpen: toggleOpen, task: widget.task)
+        ? TaskForm(
+            toggleOpen: toggleOpen,
+            id: widget.task.id,
+            title: widget.task.title,
+            note: widget.task.note,
+            tags: widget.task.tags,
+            dueDate: widget.task.dueDate,
+            reminder: widget.task.reminder,
+            isImportant: widget.task.isImportant,
+            isCompleted: widget.task.isCompleted,
+          )
         : TaskTile(task: widget.task, toggleOpen: toggleOpen);
   }
 }

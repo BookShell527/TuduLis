@@ -47,7 +47,7 @@ class _SidebarState extends State<Sidebar> {
     0: [Icons.inbox, Colors.pink, "All"],
     1: [Icons.star, Colors.yellow, "Important"],
     2: [Icons.today, Colors.green[300], "Today"],
-    3: [Icons.schedule, Colors.cyan, "Scheduled"],
+    3: [Icons.schedule, Colors.cyan, "Planned"],
     4: [Icons.check, Colors.blue, "Completed"],
   };
 

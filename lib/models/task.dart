@@ -45,8 +45,8 @@ class Task {
     lastEditedAt = DateTime.now();
   }
 
-  void toggleImportant(bool newValue) {
-    isImportant = newValue;
+  void toggleImportant() {
+    isImportant = !isImportant;
     lastEditedAt = DateTime.now();
   }
 

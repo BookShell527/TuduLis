@@ -15,18 +15,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int stackIndex = 0;
-
   void _changeStackIndex(int newStackIndex) {
     setState(() => stackIndex = newStackIndex);
   }
-
-  final List<Widget> _sections = const <Widget>[
-    AllSection(),
-    ImportantSection(),
-    TodaySection(),
-    PlannedSection(),
-    CompletedSection(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +34,13 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: IndexedStack(
                   index: stackIndex,
-                  children: _sections.map((Widget section) {
-                    // I put the SingleChlidScrollView here
-                    // because otherwise, the child will be centered vertically
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: section,
-                    );
-                  }).toList(),
+                  children: const <Widget>[
+                    AllSection(),
+                    ImportantSection(),
+                    TodaySection(),
+                    PlannedSection(),
+                    CompletedSection(),
+                  ],
                 ),
               ),
             ),

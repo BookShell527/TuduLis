@@ -13,10 +13,8 @@ class TaskList extends StatelessWidget {
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemCount: taskList.length,
-      itemBuilder: (BuildContext context, int i) {
-        Task task = taskList[i];
-        return TaskWrapper(task: task);
-      },
+      itemBuilder: (BuildContext context, int i) =>
+          TaskWrapper(task: taskList[i]),
     );
   }
 }
