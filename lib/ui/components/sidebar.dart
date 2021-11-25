@@ -22,7 +22,7 @@ class _SidebarState extends State<Sidebar> {
   void toggleDense() => setState(() => isDense = !isDense);
 
   List<Widget> _buildBottomButton(ThemeService themeService) {
-    return [
+    return <Widget>[
       IconButton(
         onPressed: themeService.toggleTheme,
         icon:
@@ -43,19 +43,19 @@ class _SidebarState extends State<Sidebar> {
     ];
   }
 
+  final Map<int, List> _tileList = {
+    0: [Icons.inbox, Colors.pink, "All"],
+    1: [Icons.star, Colors.yellow, "Important"],
+    2: [Icons.today, Colors.green[300], "Today"],
+    3: [Icons.schedule, Colors.cyan, "Scheduled"],
+    4: [Icons.check, Colors.blue, "Completed"],
+  };
+
   @override
   Widget build(BuildContext context) {
     ThemeService _themeService = Provider.of<ThemeService>(context);
+
     // TODO pls animate this
-
-    Map<int, List> _tileList = {
-      0: [Icons.inbox, Colors.pink, "All"],
-      1: [Icons.star, Colors.yellow, "Important"],
-      2: [Icons.today, Colors.green[300], "Today"],
-      3: [Icons.schedule, Colors.cyan, "Scheduled"],
-      4: [Icons.check, Colors.blue, "Completed"],
-    };
-
     return SizedBox(
       width: isDense ? 55.0 : 200.0,
       child: Drawer(

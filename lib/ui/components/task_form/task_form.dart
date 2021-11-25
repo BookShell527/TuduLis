@@ -7,10 +7,11 @@ import 'package:tudulis/ui/components/task_form/task_form_bottom.dart';
 import 'package:tudulis/models/task.dart';
 
 class TaskForm extends StatefulWidget {
-  TaskForm({Key? key, required this.toggleOpen, this.task}) : super(key: key);
+  const TaskForm({Key? key, required this.toggleOpen, this.task})
+      : super(key: key);
 
   final void Function()? toggleOpen;
-  Task? task;
+  final Task? task;
 
   @override
   _TaskFormState createState() => _TaskFormState();
@@ -45,16 +46,12 @@ class _TaskFormState extends State<TaskForm> {
 
   void changeDate(bool isReminder) async {
     DateTime? date = await getDate(context, isReminder: isReminder);
-    if (isReminder) {
-      setState(() => reminder = date);
-    } else {
-      setState(() => dueDate = date);
-    }
+    isReminder
+        ? setState(() => reminder = date)
+        : setState(() => dueDate = date);
   }
 
-  void toggleImportant() async {
-    setState(() => isImportant = !isImportant);
-  }
+  void toggleImportant() async => setState(() => isImportant = !isImportant);
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +75,7 @@ class _TaskFormState extends State<TaskForm> {
       padding: const EdgeInsets.fromLTRB(5.0, 8.0, 5.0, 0.0),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-        border: Border.all(
-          color: Colors.grey,
-          width: 1.0,
-        ),
+        border: Border.all(color: Colors.grey, width: 1.0),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -90,7 +84,7 @@ class _TaskFormState extends State<TaskForm> {
           Checkbox(
             value: isCompleted,
             fillColor: checkboxColor,
-            onChanged: (val) => setState(() => isCompleted = !isCompleted),
+            onChanged: (val) => setState(() => isCompleted = val!),
             splashRadius: 0.1,
           ),
           Expanded(

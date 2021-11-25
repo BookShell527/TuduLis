@@ -11,7 +11,6 @@ class AddTask extends StatefulWidget {
 
 class _AddTaskState extends State<AddTask> {
   bool isOpened = false;
-
   void toggleOpen() => setState(() => isOpened = !isOpened);
 
   @override

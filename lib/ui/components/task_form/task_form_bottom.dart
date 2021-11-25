@@ -33,9 +33,7 @@ class TaskFormBottom extends StatelessWidget {
         TextButton(
           onPressed: title.isEmpty ? null : handleSubmit,
           child: Text(isUpdate ? "Update task" : "Add task"),
-          style: TextButton.styleFrom(
-            splashFactory: NoSplash.splashFactory,
-          ),
+          style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
         ),
         TextButton.icon(
           icon: const Icon(Icons.calendar_today, size: 18.0),
