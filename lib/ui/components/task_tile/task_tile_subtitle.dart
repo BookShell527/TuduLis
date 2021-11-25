@@ -30,7 +30,7 @@ class TaskTileSubtitle extends StatelessWidget {
                   if (date != null) taskService.updateDueDate(task, date);
                 },
                 label: Text(
-                  formatDate(task.dueDate!),
+                  formatDate(context, task.dueDate!),
                 ),
                 icon: const Icon(
                   Icons.calendar_today,
@@ -48,7 +48,7 @@ class TaskTileSubtitle extends StatelessWidget {
                   if (date != null) taskService.updateReminder(task, date);
                 },
                 label: Text(
-                  formatDate(task.reminder!, isReminder: true),
+                  formatDate(context, task.reminder!, isReminder: true),
                 ),
                 icon: const Icon(
                   Icons.alarm,

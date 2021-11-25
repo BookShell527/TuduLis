@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:tudulis/shared/date_picker.dart';
 import 'package:tudulis/shared/checkbox_color.dart';
 import 'package:tudulis/ui/components/task_form/task_form_bottom.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskForm extends StatefulWidget {
   TaskForm({
@@ -54,6 +55,7 @@ class _TaskFormState extends State<TaskForm> {
   @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
+    final AppLocalizations _localizations = AppLocalizations.of(context)!;
 
     void _handleSubmit() {
       _taskService.putTask(
@@ -90,7 +92,9 @@ class _TaskFormState extends State<TaskForm> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TextFormField(
-                  decoration: _inputDecoration.copyWith(hintText: "Title"),
+                  decoration: _inputDecoration.copyWith(
+                    hintText: _localizations.title,
+                  ),
                   onChanged: (val) => setState(() => widget.title = val),
                   initialValue: widget.title,
                 ),
@@ -102,7 +106,7 @@ class _TaskFormState extends State<TaskForm> {
                     fontWeight: FontWeight.w300,
                   ),
                   decoration: _inputDecoration.copyWith(
-                    hintText: "Note for this task...",
+                    hintText: _localizations.noteForThisTask,
                   ),
                   onChanged: (val) => setState(() => widget.note = val),
                   initialValue: widget.note,

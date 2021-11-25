@@ -80,7 +80,8 @@ class TaskService with ChangeNotifier {
   }
 
   List<Task> get getPlannedTask {
-    return getAllTask.where((Task task) => task.dueDate != null).toList();
+    Query<Task> query = taskBox.query(Task_.dueDate.notNull()).build();
+    return query.find();
   }
 
   List<Task> get getTodayTask {

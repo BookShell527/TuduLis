@@ -1,0 +1,17 @@
+{
+  "allSection": "Semua",
+  "importantSection": "Penting",
+  "todaySection": "Hari ini",
+  "plannedSection": "Terjadwal",
+  "completedSection": "Selesai",
+  "today": "Hari ini",
+  "tomorrow": "Besok",
+  "yesterday": "Kemarin",
+  "title": "Judul",
+  "noteForThisTask": "Catatan untuk tugas ini...",
+  "addTask": "Tambah tugas",
+  "dueDate": "Batas waktu",
+  "reminder": "Pengingat",
+  "tags": "Tags",
+  "updateTask": "Perbarui tugas"
+}

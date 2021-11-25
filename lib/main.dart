@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/objectbox.g.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/ui/home.dart';
@@ -32,6 +34,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tudu Lis',
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        AppLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('id'),
+      ],
+      locale: const Locale('id'),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         brightness: Brightness.light,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/shared/format_date.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskFormBottom extends StatelessWidget {
   const TaskFormBottom({
@@ -27,12 +28,15 @@ class TaskFormBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations _localizations = AppLocalizations.of(context)!;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         TextButton(
           onPressed: title.isEmpty ? null : handleSubmit,
-          child: Text(isUpdate ? "Update task" : "Add task"),
+          child: Text(
+            isUpdate ? _localizations.updateTask : _localizations.addTask,
+          ),
           style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
         ),
         TextButton.icon(
@@ -42,7 +46,9 @@ class TaskFormBottom extends StatelessWidget {
             splashFactory: NoSplash.splashFactory,
           ),
           label: Text(
-            dueDate == null ? "Due date" : formatDate(dueDate!),
+            dueDate == null
+                ? _localizations.dueDate
+                : formatDate(context, dueDate!),
           ),
           onPressed: () => changeDate(false),
         ),
@@ -54,8 +60,8 @@ class TaskFormBottom extends StatelessWidget {
           icon: const Icon(Icons.alarm, size: 18.0),
           label: Text(
             reminder == null
-                ? "Reminder"
-                : formatDate(reminder!, isReminder: true),
+                ? _localizations.reminder
+                : formatDate(context, reminder!, isReminder: true),
           ),
           onPressed: () => changeDate(true),
         ),
@@ -66,7 +72,7 @@ class TaskFormBottom extends StatelessWidget {
             primary: Colors.red[300],
             splashFactory: NoSplash.splashFactory,
           ),
-          label: const Text("Tags"),
+          label: Text(_localizations.tags),
         ),
         IconButton(
           icon: Icon(

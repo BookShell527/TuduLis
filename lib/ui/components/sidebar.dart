@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/theme_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({
@@ -43,18 +44,10 @@ class _SidebarState extends State<Sidebar> {
     ];
   }
 
-  final Map<int, List> _tileList = {
-    0: [Icons.inbox, Colors.pink, "All"],
-    1: [Icons.star, Colors.yellow, "Important"],
-    2: [Icons.today, Colors.green[300], "Today"],
-    3: [Icons.schedule, Colors.cyan, "Planned"],
-    4: [Icons.check, Colors.blue, "Completed"],
-  };
-
   @override
   Widget build(BuildContext context) {
     ThemeService _themeService = Provider.of<ThemeService>(context);
-
+    AppLocalizations _localizations = AppLocalizations.of(context)!;
     // TODO pls animate this
     return SizedBox(
       width: isDense ? 55.0 : 200.0,
@@ -63,14 +56,36 @@ class _SidebarState extends State<Sidebar> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ..._tileList.entries.map((e) {
-              return ListTile(
-                leading: Icon(e.value[0], color: e.value[1]),
-                title: isDense ? null : Text(e.value[2]),
-                onTap: () => widget.changeIndex(e.key),
-                selected: widget.index == e.key,
-              );
-            }).toList(),
+            ListTile(
+              leading: const Icon(Icons.inbox, color: Colors.pink),
+              title: isDense ? null : Text(_localizations.allSection),
+              onTap: () => widget.changeIndex(0),
+              selected: widget.index == 0,
+            ),
+            ListTile(
+              leading: const Icon(Icons.star, color: Colors.yellow),
+              title: isDense ? null : Text(_localizations.importantSection),
+              onTap: () => widget.changeIndex(1),
+              selected: widget.index == 1,
+            ),
+            ListTile(
+              leading: Icon(Icons.today, color: Colors.green[300]),
+              title: isDense ? null : Text(_localizations.todaySection),
+              onTap: () => widget.changeIndex(2),
+              selected: widget.index == 2,
+            ),
+            ListTile(
+              leading: const Icon(Icons.schedule, color: Colors.cyan),
+              title: isDense ? null : Text(_localizations.plannedSection),
+              onTap: () => widget.changeIndex(3),
+              selected: widget.index == 3,
+            ),
+            ListTile(
+              leading: const Icon(Icons.check, color: Colors.blue),
+              title: isDense ? null : Text(_localizations.completedSection),
+              onTap: () => widget.changeIndex(4),
+              selected: widget.index == 4,
+            ),
             const Spacer(),
             isDense
                 ? Column(children: _buildBottomButton(_themeService))

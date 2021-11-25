@@ -1,0 +1,17 @@
+{
+  "allSection": "All",
+  "importantSection": "Important",
+  "todaySection": "Today",
+  "plannedSection": "Planned",
+  "completedSection": "Completed",
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "yesterday": "Yesterday",
+  "title": "Title",
+  "noteForThisTask": "Note for this task...",
+  "addTask": "Add task",
+  "dueDate": "Due date",
+  "reminder": "Reminder",
+  "tags": "Tags",
+  "updateTask": "Update task"
+}

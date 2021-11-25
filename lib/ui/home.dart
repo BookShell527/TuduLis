@@ -32,15 +32,17 @@ class _HomeState extends State<Home> {
               ),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: IndexedStack(
-                  index: stackIndex,
-                  children: const <Widget>[
-                    AllSection(),
-                    ImportantSection(),
-                    TodaySection(),
-                    PlannedSection(),
-                    CompletedSection(),
-                  ],
+                child: SingleChildScrollView(
+                  child: IndexedStack(
+                    index: stackIndex,
+                    children: const <Widget>[
+                      AllSection(),
+                      ImportantSection(),
+                      TodaySection(),
+                      PlannedSection(),
+                      CompletedSection(),
+                    ],
+                  ),
                 ),
               ),
             ),
