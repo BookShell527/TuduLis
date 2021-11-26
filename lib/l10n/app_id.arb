@@ -13,5 +13,10 @@
   "dueDate": "Batas waktu",
   "reminder": "Pengingat",
   "tags": "Tags",
-  "updateTask": "Perbarui tugas"
+  "updateTask": "Perbarui tugas",
+  "sortTaskList": "Urutkan daftar tugas menurut...",
+  "created": "Dibuat",
+  "lastEdited": "Terakhir Diubah",
+  "alphabetically": "Menurut Abjad",
+  "important": "Kepentingan"
 }

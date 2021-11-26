@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:intl/intl.dart';
+import 'package:tudulis/shared/format_date.dart';
 import 'package:tudulis/ui/components/add_task/add_task.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/task_service.dart';
+import 'package:tudulis/ui/components/sort_button.dart';
 import 'package:tudulis/ui/components/task_list.dart';
 
-class TodaySection extends StatelessWidget {
+class TodaySection extends StatefulWidget {
   const TodaySection({Key? key}) : super(key: key);
+
+  @override
+  State<TodaySection> createState() => _TodaySectionState();
+}
+
+class _TodaySectionState extends State<TodaySection> {
+  String sort = "Created";
+  void changeSort(String newSort) => setState(() => sort = newSort);
 
   @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         const SizedBox(height: 10.0),
         Row(
@@ -30,20 +38,12 @@ class TodaySection extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  TextSpan(
-                      text: DateFormat(
-                    "  EEEE, d MMMM y",
-                    _localizations.localeName,
-                  ).format(DateTime.now()))
+                  TextSpan(text: "  " + formatDate(context, DateTime.now())),
                 ],
               ),
             ),
             const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_vert),
-              splashRadius: 25.0,
-            ),
+            SortButton(changeSort: changeSort, isTodaySection: true),
           ],
         ),
         const SizedBox(height: 5.0),
@@ -57,7 +57,7 @@ class TodaySection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 5.0),
-        TaskList(taskList: _taskService.getTodayTask),
+        TaskList(taskList: _taskService.getToday, sort: sort),
       ],
     );
   }

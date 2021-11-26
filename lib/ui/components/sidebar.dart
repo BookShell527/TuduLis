@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/theme_service.dart';
+import 'package:tudulis/services/task_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Sidebar extends StatefulWidget {
@@ -47,6 +48,7 @@ class _SidebarState extends State<Sidebar> {
   @override
   Widget build(BuildContext context) {
     ThemeService _themeService = Provider.of<ThemeService>(context);
+    TaskService _taskService = Provider.of<TaskService>(context);
     AppLocalizations _localizations = AppLocalizations.of(context)!;
     // TODO pls animate this
     return SizedBox(
@@ -59,30 +61,35 @@ class _SidebarState extends State<Sidebar> {
             ListTile(
               leading: const Icon(Icons.inbox, color: Colors.pink),
               title: isDense ? null : Text(_localizations.allSection),
+              trailing: Text(_taskService.getAll.length.toString()),
               onTap: () => widget.changeIndex(0),
               selected: widget.index == 0,
             ),
             ListTile(
               leading: const Icon(Icons.star, color: Colors.yellow),
               title: isDense ? null : Text(_localizations.importantSection),
+              trailing: Text(_taskService.getImportant.length.toString()),
               onTap: () => widget.changeIndex(1),
               selected: widget.index == 1,
             ),
             ListTile(
               leading: Icon(Icons.today, color: Colors.green[300]),
               title: isDense ? null : Text(_localizations.todaySection),
+              trailing: Text(_taskService.getToday.length.toString()),
               onTap: () => widget.changeIndex(2),
               selected: widget.index == 2,
             ),
             ListTile(
               leading: const Icon(Icons.schedule, color: Colors.cyan),
               title: isDense ? null : Text(_localizations.plannedSection),
+              trailing: Text(_taskService.getPlanned.length.toString()),
               onTap: () => widget.changeIndex(3),
               selected: widget.index == 3,
             ),
             ListTile(
               leading: const Icon(Icons.check, color: Colors.blue),
               title: isDense ? null : Text(_localizations.completedSection),
+              trailing: Text(_taskService.getCompleted.length.toString()),
               onTap: () => widget.changeIndex(4),
               selected: widget.index == 4,
             ),

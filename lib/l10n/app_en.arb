@@ -13,5 +13,10 @@
   "dueDate": "Due date",
   "reminder": "Reminder",
   "tags": "Tags",
-  "updateTask": "Update task"
+  "updateTask": "Update task",
+  "sortTaskList": "Sort task list according to...",
+  "created": "Created",
+  "lastEdited": "Last Edited",
+  "alphabetically": "Alphabetically",
+  "important": "Important"
 }

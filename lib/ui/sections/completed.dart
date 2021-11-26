@@ -18,13 +18,13 @@ class _CompletedSectionState extends State<CompletedSection> {
     final TaskService _taskService = Provider.of<TaskService>(context);
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         const SizedBox(height: 10.0),
         Row(
           children: <Widget>[
             Text(
-              _localizations.importantSection,
+              _localizations.completedSection,
               style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w600,
@@ -40,7 +40,7 @@ class _CompletedSectionState extends State<CompletedSection> {
         ),
         const AddTask(isCompleted: true),
         const SizedBox(height: 5.0),
-        TaskList(taskList: _taskService.getCompleted),
+        TaskList(taskList: _taskService.getCompleted, sort: "Created"),
       ],
     );
   }

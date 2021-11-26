@@ -29,15 +29,14 @@ class TaskTileSubtitle extends StatelessWidget {
                   DateTime? date = await getDate(context);
                   if (date != null) taskService.updateDueDate(task, date);
                 },
-                label: Text(
-                  formatDate(context, task.dueDate!),
-                ),
+                label: Text(formatDate(context, task.dueDate!)),
                 icon: const Icon(
                   Icons.calendar_today,
                   size: 14.0,
                 ),
                 style: TextButton.styleFrom(
-                  primary: Colors.cyan,
+                  primary:
+                      isOverdue(task.dueDate!) ? Colors.red[400] : Colors.cyan,
                   splashFactory: NoSplash.splashFactory,
                 ),
               ),
@@ -50,12 +49,10 @@ class TaskTileSubtitle extends StatelessWidget {
                 label: Text(
                   formatDate(context, task.reminder!, isReminder: true),
                 ),
-                icon: const Icon(
-                  Icons.alarm,
-                  size: 14.0,
-                ),
+                icon: const Icon(Icons.alarm, size: 14.0),
                 style: TextButton.styleFrom(
-                  primary: Colors.teal,
+                  primary:
+                      isOverdue(task.reminder!) ? Colors.red[400] : Colors.teal,
                   splashFactory: NoSplash.splashFactory,
                 ),
               ),

@@ -1,13 +1,9 @@
-#+TITLE: TuduLis
-#+DESCRIPTION: TuduLis readme file
-#+AUTHOR: Firsto Kurniaji
-
 *This readme file is currently just a template*
 
-* Description
+# Description
 *TuduLis* is a free and open source to-do list and reminder application.
 
-* Table Of Content :toc:
+# Table Of Content
 - [[#description][Description]]
 - [[#installation][Installation]]
   - [[#windows][Windows]]
@@ -21,23 +17,18 @@
 - [[#localisation][Localisation]]
 - [[#plan-04][Plan]]
 
-* Installation
-** Windows
-** Linux
-** Mac OS
-** Android
-** IOS
+# Installation
+## Windows
+## Linux
+## Mac OS
+## Android
+## IOS
 
-* Documentation
+# Documentation
 
-* Contributing
+# Contributing
 
-* Community
+# Community
 
-* Localisation
+# Localisation
 
-* Plan [0/4]
-+ [ ] Show the to do list in every category
-+ [ ] Implement the tags feature
-+ [ ] Add localization support
-+ [ ] Make the app look more beautiful

@@ -6,6 +6,7 @@ import 'package:tudulis/shared/checkbox_color.dart';
 import 'package:tudulis/ui/components/task_form/task_form_bottom.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+//ignore: must_be_immutable
 class TaskForm extends StatefulWidget {
   TaskForm({
     Key? key,
@@ -95,6 +96,7 @@ class _TaskFormState extends State<TaskForm> {
                   decoration: _inputDecoration.copyWith(
                     hintText: _localizations.title,
                   ),
+                  autofocus: true,
                   onChanged: (val) => setState(() => widget.title = val),
                   initialValue: widget.title,
                 ),

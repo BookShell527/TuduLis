@@ -64,33 +64,29 @@ class TaskService with ChangeNotifier {
     notifyListeners();
   }
 
+  List<Task> get getAll => taskBox.getAll();
+
   List<Task> get getUncompleted {
-    Query<Task> query = taskBox.query(Task_.isCompleted.equals(false)).build();
-    return query.find();
+    return getAll.where((Task task) => task.isCompleted == false).toList();
   }
 
   List<Task> get getCompleted {
-    Query<Task> query = taskBox.query(Task_.isCompleted.equals(true)).build();
-    return query.find();
+    return getAll.where((Task task) => task.isCompleted == true).toList();
   }
 
   List<Task> get getImportant {
-    Query<Task> query = taskBox.query(Task_.isImportant.equals(true)).build();
-    return query.find();
+    return getAll.where((Task task) => task.isImportant == true).toList();
   }
 
-  List<Task> get getPlannedTask {
-    Query<Task> query = taskBox.query(Task_.dueDate.notNull()).build();
-    return query.find();
+  List<Task> get getPlanned {
+    return getAll.where((Task task) => task.dueDate != null).toList();
   }
 
-  List<Task> get getTodayTask {
-    return getAllTask.where((Task task) {
+  List<Task> get getToday {
+    return getAll.where((Task task) {
       return (task.dueDate?.day == DateTime.now().day) &&
           (task.dueDate?.month == DateTime.now().month) &&
           (task.dueDate?.year == DateTime.now().year);
     }).toList();
   }
-
-  List<Task> get getAllTask => taskBox.getAll();
 }

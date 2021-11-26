@@ -15,34 +15,30 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int stackIndex = 0;
-  void _changeStackIndex(int newStackIndex) {
-    setState(() => stackIndex = newStackIndex);
-  }
+
+  void _changeStackIndex(int newIndex) => setState(() => stackIndex = newIndex);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
-        children: [
+        children: <Widget>[
           Sidebar(changeIndex: _changeStackIndex, index: stackIndex),
           Expanded(
             child: ScrollConfiguration(
-              behavior: ScrollConfiguration.of(context).copyWith(
-                scrollbars: false,
-              ),
+              behavior:
+                  ScrollConfiguration.of(context).copyWith(scrollbars: false),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: SingleChildScrollView(
-                  child: IndexedStack(
-                    index: stackIndex,
-                    children: const <Widget>[
-                      AllSection(),
-                      ImportantSection(),
-                      TodaySection(),
-                      PlannedSection(),
-                      CompletedSection(),
-                    ],
-                  ),
+                child: IndexedStack(
+                  index: stackIndex,
+                  children: const <Widget>[
+                    AllSection(),
+                    ImportantSection(),
+                    TodaySection(),
+                    PlannedSection(),
+                    CompletedSection(),
+                  ],
                 ),
               ),
             ),
