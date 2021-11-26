@@ -26,8 +26,9 @@ class _HomeState extends State<Home> {
           Sidebar(changeIndex: _changeStackIndex, index: stackIndex),
           Expanded(
             child: ScrollConfiguration(
-              behavior:
-                  ScrollConfiguration.of(context).copyWith(scrollbars: false),
+              behavior: ScrollConfiguration.of(context).copyWith(
+                scrollbars: false,
+              ),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: IndexedStack(

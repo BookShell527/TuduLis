@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tudulis/services/theme_service.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tudulis/ui/components/settings_dialog.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({
@@ -32,7 +33,10 @@ class _SidebarState extends State<Sidebar> {
         splashRadius: 0.1,
       ),
       IconButton(
-        onPressed: () {},
+        onPressed: () => showDialog(
+          context: context,
+          builder: (BuildContext context) => const SettingsDialog(),
+        ),
         icon: const Icon(Icons.settings),
         splashRadius: 0.1,
       ),

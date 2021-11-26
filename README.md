@@ -4,18 +4,17 @@
 *TuduLis* is a free and open source to-do list and reminder application.
 
 # Table Of Content
-- [[#description][Description]]
-- [[#installation][Installation]]
-  - [[#windows][Windows]]
-  - [[#linux][Linux]]
-  - [[#mac-os][Mac OS]]
-  - [[#android][Android]]
-  - [[#ios][IOS]]
-- [[#documentation][Documentation]]
-- [[#contributing][Contributing]]
-- [[#community][Community]]
-- [[#localisation][Localisation]]
-- [[#plan-04][Plan]]
+- [Description](#description)
+- [Installation](#installation)
+  - [Windows](#windows)
+  - [Linux](#linux)
+  - [Mac OS](#mac-os)
+  - [Android](#android)
+  - [IOS](#ios)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [Community](#community)
+- [Localisation](#localisation)
 
 # Installation
 ## Windows
@@ -31,4 +30,3 @@
 # Community
 
 # Localisation
-
