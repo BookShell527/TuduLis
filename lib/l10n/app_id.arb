@@ -18,5 +18,14 @@
   "created": "Dibuat",
   "lastEdited": "Terakhir Diubah",
   "alphabetically": "Menurut Abjad",
-  "important": "Kepentingan"
+  "important": "Kepentingan",
+  "settings": "Pengaturan",
+  "general": "Umum",
+  "appearances": "Tampilan",
+  "language": "Bahasa",
+  "changingTheLanguage": "Mengganti bahasa",
+  "yes": "Ya",
+  "no": "Tidak",
+  "areYouSure": "Apakah anda yakin?",
+  "themeMode": "Mode Tema"
 }

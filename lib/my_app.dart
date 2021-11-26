@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/ui/home.dart';
 import 'package:provider/provider.dart';
+import 'package:tudulis/services/language_service.dart';
 import 'package:tudulis/services/theme_service.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LanguageService _languageService = Provider.of<LanguageService>(context);
     return MaterialApp(
       title: 'Tudu Lis',
       localizationsDelegates: const [
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('id'),
       ],
-      locale: const Locale('id'),
+      locale: Locale(_languageService.langCode),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         brightness: Brightness.light,

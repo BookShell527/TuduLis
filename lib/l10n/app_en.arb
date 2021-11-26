@@ -18,5 +18,14 @@
   "created": "Created",
   "lastEdited": "Last Edited",
   "alphabetically": "Alphabetically",
-  "important": "Important"
+  "important": "Important",
+  "settings": "Settings",
+  "general": "General",
+  "appearances": "Appearances",
+  "language": "Language",
+  "changingTheLanguage": "Changing the language",
+  "yes": "Yes",
+  "no": "No",
+  "areYouSure": "Are you sure?",
+  "themeMode": "Theme Mode"
 }
