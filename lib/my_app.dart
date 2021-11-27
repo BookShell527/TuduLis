@@ -3,15 +3,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/ui/home.dart';
 import 'package:provider/provider.dart';
-import 'package:tudulis/services/language_service.dart';
-import 'package:tudulis/services/theme_service.dart';
+import 'package:tudulis/services/settings_service.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    LanguageService _languageService = Provider.of<LanguageService>(context);
+    SettingsService _settingsService = Provider.of<SettingsService>(context);
     return MaterialApp(
       title: 'Tudu Lis',
       localizationsDelegates: const [
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('id'),
       ],
-      locale: Locale(_languageService.langCode),
+      locale: Locale(_settingsService.langCode),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         brightness: Brightness.light,
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
         checkboxTheme: const CheckboxThemeData(splashRadius: 0.1),
       ),
       debugShowCheckedModeBanner: false,
-      themeMode: Provider.of<ThemeService>(context).theme,
+      themeMode: _settingsService.isDark ? ThemeMode.dark : ThemeMode.light,
       home: const Home(),
     );
   }

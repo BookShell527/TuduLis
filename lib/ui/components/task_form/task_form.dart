@@ -41,6 +41,8 @@ class _TaskFormState extends State<TaskForm> {
     isDense: true,
     border: InputBorder.none,
   );
+  late final TextEditingController titleController;
+  late final TextEditingController noteController;
 
   void changeDate(bool isReminder) async {
     DateTime? date = await getDate(context, isReminder: isReminder);
@@ -54,6 +56,13 @@ class _TaskFormState extends State<TaskForm> {
   }
 
   @override
+  void initState() {
+    titleController = TextEditingController(text: widget.title);
+    noteController = TextEditingController(text: widget.note);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
@@ -61,8 +70,8 @@ class _TaskFormState extends State<TaskForm> {
     void _handleSubmit() {
       _taskService.putTask(
         id: widget.id,
-        title: widget.title,
-        note: widget.note,
+        title: titleController.text,
+        note: noteController.text,
         tags: widget.tags,
         dueDate: widget.dueDate,
         reminder: widget.reminder,
@@ -97,8 +106,7 @@ class _TaskFormState extends State<TaskForm> {
                     hintText: _localizations.title,
                   ),
                   autofocus: true,
-                  onChanged: (val) => setState(() => widget.title = val),
-                  initialValue: widget.title,
+                  controller: titleController,
                 ),
                 TextFormField(
                   maxLines: null,
@@ -110,8 +118,7 @@ class _TaskFormState extends State<TaskForm> {
                   decoration: _inputDecoration.copyWith(
                     hintText: _localizations.noteForThisTask,
                   ),
-                  onChanged: (val) => setState(() => widget.note = val),
-                  initialValue: widget.note,
+                  controller: noteController,
                 ),
                 TaskFormBottom(
                   handleSubmit: _handleSubmit,

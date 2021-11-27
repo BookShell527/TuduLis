@@ -3,7 +3,7 @@ import 'package:tudulis/shared/format_language_code.dart';
 import 'package:tudulis/ui/components/settings/settings_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:tudulis/services/language_service.dart';
+import 'package:tudulis/services/settings_service.dart';
 
 class GeneralSection extends StatefulWidget {
   const GeneralSection({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _GeneralSectionState extends State<GeneralSection> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
-    LanguageService _languageService = Provider.of<LanguageService>(context);
+    SettingsService _settingsService = Provider.of<SettingsService>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -42,7 +42,7 @@ class _GeneralSectionState extends State<GeneralSection> {
                         child: Text(_localizations.yes),
                         onPressed: () {
                           Navigator.of(context).pop();
-                          _languageService.setLangCode = val!;
+                          _settingsService.setLangCode(val!);
                         },
                       ),
                     ],

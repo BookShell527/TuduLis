@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/ui/components/settings/settings_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:tudulis/services/theme_service.dart';
+import 'package:tudulis/services/settings_service.dart';
 import 'package:provider/provider.dart';
 
 class AppearancesSection extends StatefulWidget {
@@ -15,7 +15,8 @@ class _AppearancesSectionState extends State<AppearancesSection> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
-    final ThemeService _themeService = Provider.of<ThemeService>(context);
+    final SettingsService _settingsService =
+        Provider.of<SettingsService>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -26,9 +27,9 @@ class _AppearancesSectionState extends State<AppearancesSection> {
           trailing: Switch(
             splashRadius: 0.1,
             activeColor: Colors.blue,
-            value: _themeService.isDark,
+            value: _settingsService.isDark,
             onChanged: (bool val) {
-              _themeService.theme = val ? ThemeMode.dark : ThemeMode.light;
+              _settingsService.toggleTheme();
             },
           ),
         ),

@@ -20,6 +20,7 @@ dependencies:
   uuid: ^3.0.5
   objectbox: ^1.2.0
   objectbox_flutter_libs: any
+  shared_preferences: ^2.0.9
 
 dev_dependencies:
   flutter_test:
