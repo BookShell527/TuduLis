@@ -23,14 +23,12 @@ class _AppearancesSectionState extends State<AppearancesSection> {
         SettingsTitle(title: _localizations.appearances),
         const SizedBox(height: 5.0),
         ListTile(
-          title: Text(_localizations.themeMode),
+          title: Text(_localizations.darkMode),
           trailing: Switch(
             splashRadius: 0.1,
             activeColor: Colors.blue,
             value: _settingsService.isDark,
-            onChanged: (bool val) {
-              _settingsService.toggleTheme();
-            },
+            onChanged: (bool val) => _settingsService.toggleTheme(),
           ),
         ),
       ],

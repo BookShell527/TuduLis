@@ -30,6 +30,7 @@ class _TodaySectionState extends State<TodaySection> {
           children: <Widget>[
             RichText(
               text: TextSpan(
+                style: DefaultTextStyle.of(context).style,
                 children: <TextSpan>[
                   TextSpan(
                     text: _localizations.todaySection,
