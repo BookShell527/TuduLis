@@ -19,9 +19,8 @@ class Sidebar extends StatefulWidget {
   State<Sidebar> createState() => _SidebarState();
 }
 
-class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
+class _SidebarState extends State<Sidebar> {
   bool isDense = false;
-
   void toggleDense() => setState(() => isDense = !isDense);
 
   @override
@@ -29,6 +28,14 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
     TaskService _taskService = Provider.of<TaskService>(context);
     SettingsService _settingsService = Provider.of<SettingsService>(context);
     AppLocalizations _localizations = AppLocalizations.of(context)!;
+
+    final List data = [
+      [Icons.inbox, Colors.pink, _localizations.allSection, _taskService.getAll],
+      [Icons.star, Colors.yellow, _localizations.importantSection, _taskService.getImportant],
+      [Icons.today, Colors.green[300], _localizations.todaySection, _taskService.getToday],
+      [Icons.schedule, Colors.cyan, _localizations.plannedSection, _taskService.getPlanned],
+      [Icons.check, Colors.blue, _localizations.completedSection, _taskService.getCompleted],
+    ];
 
     return AnimatedSize(
       duration: const Duration(milliseconds: 400),
@@ -40,51 +47,16 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              ListTile(
-                leading: const Icon(Icons.inbox, color: Colors.pink),
-                title: isDense ? null : Text(_localizations.allSection),
-                trailing: isDense || _taskService.getAll.isEmpty
-                    ? null
-                    : Text(_taskService.getAll.length.toString()),
-                onTap: () => widget.changeIndex(0),
-                selected: widget.index == 0,
-              ),
-              ListTile(
-                leading: const Icon(Icons.star, color: Colors.yellow),
-                title: isDense ? null : Text(_localizations.importantSection),
-                trailing: isDense || _taskService.getImportant.isEmpty
-                    ? null
-                    : Text(_taskService.getImportant.length.toString()),
-                onTap: () => widget.changeIndex(1),
-                selected: widget.index == 1,
-              ),
-              ListTile(
-                leading: Icon(Icons.today, color: Colors.green[300]),
-                title: isDense ? null : Text(_localizations.todaySection),
-                trailing: isDense || _taskService.getToday.isEmpty
-                    ? null
-                    : Text(_taskService.getToday.length.toString()),
-                onTap: () => widget.changeIndex(2),
-                selected: widget.index == 2,
-              ),
-              ListTile(
-                leading: const Icon(Icons.schedule, color: Colors.cyan),
-                title: isDense ? null : Text(_localizations.plannedSection),
-                trailing: isDense || _taskService.getPlanned.isEmpty
-                    ? null
-                    : Text(_taskService.getPlanned.length.toString()),
-                onTap: () => widget.changeIndex(3),
-                selected: widget.index == 3,
-              ),
-              ListTile(
-                leading: const Icon(Icons.check, color: Colors.blue),
-                title: isDense ? null : Text(_localizations.completedSection),
-                trailing: isDense || _taskService.getCompleted.isEmpty
-                    ? null
-                    : Text(_taskService.getCompleted.length.toString()),
-                onTap: () => widget.changeIndex(4),
-                selected: widget.index == 4,
-              ),
+              for (int i = 0; i < data.length; i++)
+                ListTile(
+                  leading: Icon(data[i][0], color: data[i][1]),
+                  title: isDense ? null : Text(data[i][2]),
+                  trailing: isDense || data[i][3].isEmpty
+                      ? null
+                      : Text(data[i][3].length.toString()),
+                  onTap: () => widget.changeIndex(i),
+                  selected: widget.index == i,
+                ),
               const Spacer(),
               Wrap(
                 children: <Widget>[
@@ -105,7 +77,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
                   ),
                   IconButton(
                     onPressed: toggleDense,
-                    icon: Icon(!isDense ? Icons.arrow_left : Icons.arrow_right),
+                    icon: Icon(isDense ? Icons.arrow_right : Icons.arrow_left),
                     splashRadius: 0.1,
                   ),
                 ],

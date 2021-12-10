@@ -14,7 +14,6 @@ class TaskWrapper extends StatefulWidget {
 
 class _TaskWrapperState extends State<TaskWrapper> {
   bool isOpened = false;
-
   void toggleOpen() => setState(() => isOpened = !isOpened);
 
   @override

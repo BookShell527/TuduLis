@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tudulis/ui/components/add_task/button.dart';
 import 'package:tudulis/ui/components/task_form.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({
@@ -23,6 +23,7 @@ class _AddTaskState extends State<AddTask> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations _localizations = AppLocalizations.of(context)!;
     return isOpened
         ? TaskForm(
             toggleOpen: toggleOpen,
@@ -30,6 +31,20 @@ class _AddTaskState extends State<AddTask> {
             isCompleted: widget.isCompleted ?? false,
             dueDate: widget.dueDate,
           )
-        : AddTaskButton(toggleOpen: toggleOpen);
+        : SizedBox(
+            width: double.infinity,
+            child: TextButton.icon(
+              style: ButtonStyle(
+                overlayColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.any({MaterialState.pressed}.contains)) {
+                    return Colors.transparent;
+                  }
+                }),
+              ),
+              icon: const Icon(Icons.add),
+              onPressed: toggleOpen,
+              label: Text(_localizations.addTask),
+            ),
+          );
   }
 }

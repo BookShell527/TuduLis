@@ -13,19 +13,22 @@ class MyApp extends StatelessWidget {
     ThemeData _theme(bool isDark) {
       return ThemeData(
         brightness: isDark ? Brightness.dark : Brightness.light,
-        drawerTheme: DrawerThemeData(backgroundColor: Colors.grey[isDark ? 900 : 100]),
+        drawerTheme: DrawerThemeData(
+          backgroundColor: Colors.grey[isDark ? 900 : 100],
+        ),
         splashColor: Colors.transparent,
         primarySwatch: _settingsService.accentColor,
         checkboxTheme: CheckboxThemeData(
           splashRadius: 0.1,
           fillColor: MaterialStateProperty.resolveWith((states) {
-            const Set<MaterialState> interactiveStates = <MaterialState>{
+            if (states.any({
               MaterialState.pressed,
               MaterialState.hovered,
               MaterialState.focused,
-              MaterialState.selected,
-            };
-            if (states.any(interactiveStates.contains)) return _settingsService.accentColor;
+              MaterialState.selected
+            }.contains)) {
+              return _settingsService.accentColor;
+            }
             return Colors.grey;
           }),
         ),

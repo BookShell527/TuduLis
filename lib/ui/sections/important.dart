@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:tudulis/ui/components/add_task/add_task.dart';
+import 'package:tudulis/ui/components/add_task.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/ui/components/sort_button.dart';

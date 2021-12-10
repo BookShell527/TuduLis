@@ -19,12 +19,12 @@ class SettingsService with ChangeNotifier {
   String _accentColor =_pref.getString("accentColor") ?? "blue";
   MaterialColor get accentColor {
     switch (_accentColor) {
-      case "blue": return Colors.blue;
-      case "red": return Colors.red;
-      case "green": return Colors.green;
-      case "yellow": return Colors.yellow;
-      case "purple": return Colors.purple;
-      default: return Colors.blue;
+      case "blue":      return Colors.blue;
+      case "red":       return Colors.red;
+      case "green":     return Colors.green;
+      case "yellow":    return Colors.yellow;
+      case "purple":    return Colors.purple;
+      default:          return Colors.blue;
     }
   }
   void setAccentColor(String newColor) async {

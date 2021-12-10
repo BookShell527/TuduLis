@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:tudulis/ui/components/add_task/add_task.dart';
+import 'package:tudulis/ui/components/add_task.dart';
+import 'package:tudulis/ui/components/sort_button.dart';
 import 'package:tudulis/ui/components/task_list.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/task_service.dart';
@@ -31,11 +32,6 @@ class _CompletedSectionState extends State<CompletedSection> {
               ),
             ),
             const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_vert),
-              splashRadius: 25.0,
-            ),
           ],
         ),
         const AddTask(isCompleted: true),

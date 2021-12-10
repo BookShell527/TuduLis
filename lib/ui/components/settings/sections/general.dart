@@ -5,14 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/settings_service.dart';
 
-class GeneralSection extends StatefulWidget {
+class GeneralSection extends StatelessWidget {
   const GeneralSection({Key? key}) : super(key: key);
 
-  @override
-  _GeneralSectionState createState() => _GeneralSectionState();
-}
-
-class _GeneralSectionState extends State<GeneralSection> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;

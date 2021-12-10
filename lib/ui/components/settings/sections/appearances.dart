@@ -4,19 +4,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/services/settings_service.dart';
 import 'package:provider/provider.dart';
 
-class AppearancesSection extends StatefulWidget {
+class AppearancesSection extends StatelessWidget {
   const AppearancesSection({Key? key}) : super(key: key);
-  @override
-  _AppearancesSectionState createState() => _AppearancesSectionState();
-}
 
-class _AppearancesSectionState extends State<AppearancesSection> {
-  List<List> accentList = [
-    [Colors.blue, "blue"],
-    [Colors.red, "red"],
-    [Colors.green, "green"],
-    [Colors.yellow, "yellow"],
-    [Colors.purple, "purple"],
+  final List<List> accentList = const [
+    [Colors.blue,       "blue"],
+    [Colors.red,        "red"],
+    [Colors.green,      "green"],
+    [Colors.yellow,     "yellow"],
+    [Colors.purple,     "purple"],
   ];
 
   @override
@@ -34,9 +30,7 @@ class _AppearancesSectionState extends State<AppearancesSection> {
             splashRadius: 0.1,
             activeColor: _settingsService.accentColor,
             value: _settingsService.isDark,
-            onChanged: (bool val) {
-              _settingsService.toggleTheme();
-            },
+            onChanged: (bool val) => _settingsService.toggleTheme(),
           ),
         ),
         ListTile(

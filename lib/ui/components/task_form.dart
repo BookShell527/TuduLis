@@ -44,35 +44,34 @@ class _TaskFormState extends State<TaskForm> {
 
   void changeDate(bool isReminder) async {
     DateTime? date = await getDate(context, isReminder: isReminder);
-    isReminder ? setState(() => widget.reminder = date) : setState(() => widget.dueDate = date);
+    isReminder
+        ? setState(() => widget.reminder = date)
+        : setState(() => widget.dueDate = date);
   }
 
   // text field controller
   late final TextEditingController noteController;
+  late final TextEditingController titleController;
 
   @override
   void initState() {
     noteController = TextEditingController(text: widget.note);
+    titleController = TextEditingController(text: widget.title)
+      ..addListener(() {
+        setState(() {});
+      });
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    noteController.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
-    final SettingsService _settingsService = Provider.of<SettingsService>(context);
+    final SettingsService _settingsService =
+        Provider.of<SettingsService>(context);
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
 
     void _handleSubmit() {
-      _taskService.putTask(
-        id: widget.id,
-        title: widget.title,
-        note: noteController.text,
+      _taskService.putTask( id: widget.id, title: titleController.text, note: noteController.text,
         tags: widget.tags,
         dueDate: widget.dueDate,
         reminder: widget.reminder,
@@ -106,7 +105,7 @@ class _TaskFormState extends State<TaskForm> {
                     hintText: _localizations.title,
                   ),
                   autofocus: true,
-                  onChanged: (val) => setState(() => widget.title = val),
+                  controller: titleController,
                 ),
                 TextField(
                   maxLines: null,
@@ -124,11 +123,16 @@ class _TaskFormState extends State<TaskForm> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     TextButton(
-                      onPressed: widget.title.isEmpty ? null : _handleSubmit,
+                      onPressed:
+                          titleController.text.isEmpty ? null : _handleSubmit,
                       child: Text(
-                        widget.id != 0 ? _localizations.updateTask : _localizations.addTask,
+                        widget.id != 0
+                            ? _localizations.updateTask
+                            : _localizations.addTask,
                       ),
-                      style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
+                      style: TextButton.styleFrom(
+                        splashFactory: NoSplash.splashFactory,
+                      ),
                     ),
                     TextButton.icon(
                       icon: const Icon(Icons.calendar_today, size: 18.0),
@@ -152,7 +156,11 @@ class _TaskFormState extends State<TaskForm> {
                       label: Text(
                         widget.reminder == null
                             ? _localizations.reminder
-                            : formatDate(context, widget.reminder!, isReminder: true),
+                            : formatDate(
+                                context,
+                                widget.reminder!,
+                                isReminder: true,
+                              ),
                       ),
                       onPressed: () => changeDate(true),
                     ),
@@ -172,7 +180,9 @@ class _TaskFormState extends State<TaskForm> {
                         size: 18.0,
                       ),
                       splashRadius: 0.1,
-                      onPressed: () => setState(() => widget.isImportant = !widget.isImportant),
+                      onPressed: () => setState(() {
+                        widget.isImportant = !widget.isImportant;
+                      }),
                     ),
                     const Spacer(),
                     IconButton(
@@ -192,5 +202,12 @@ class _TaskFormState extends State<TaskForm> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    noteController.dispose();
+    titleController.dispose();
+    super.dispose();
   }
 }
