@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tudulis/models/task.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/task_service.dart';
+import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/ui/components/task_tile/task_tile_subtitle.dart';
 
 class TaskTile extends StatelessWidget {
@@ -23,20 +24,21 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
+    final SettingsService _settingsService = Provider.of<SettingsService>(context);
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       child: CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
         value: task.isCompleted,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-        activeColor: Colors.blue,
+        // activeColor: Colors.blue,
         secondary: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             IconButton(
               icon: Icon(
                 task.isImportant ? Icons.star : Icons.star_outline,
-                color: Colors.blue,
+                color: _settingsService.accentColor,
               ),
               splashRadius: 0.1,
               onPressed: () => _taskService.toggleImportant(task),

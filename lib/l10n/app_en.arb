@@ -27,5 +27,6 @@
   "yes": "Yes",
   "no": "No",
   "areYouSure": "Are you sure?",
-  "themeMode": "Theme Mode"
+  "themeMode": "Theme Mode",
+  "accentColor": "Accent Color"
 }

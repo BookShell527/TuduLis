@@ -34,12 +34,12 @@ class SortButton extends StatelessWidget {
             child: Text(_localizations.alphabetically),
             value: "Alphabetically",
           ),
-          if (isImportantSection)
+          if (!isImportantSection)
             PopupMenuItem(
               child: Text(_localizations.important),
               value: "Important",
             ),
-          if (isTodaySection)
+          if (!isTodaySection)
             PopupMenuItem(
               child: Text(_localizations.dueDate),
               value: "Due date",

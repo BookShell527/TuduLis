@@ -27,5 +27,6 @@
   "yes": "Ya",
   "no": "Tidak",
   "areYouSure": "Apakah anda yakin?",
-  "themeMode": "Mode Tema"
+  "themeMode": "Mode Tema",
+  "accentColor": "Warna Pokok"
 }

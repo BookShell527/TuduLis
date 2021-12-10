@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/ui/components/add_task/button.dart';
-import 'package:tudulis/ui/components/task_form/task_form.dart';
+import 'package:tudulis/ui/components/task_form.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({

@@ -43,7 +43,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
               ListTile(
                 leading: const Icon(Icons.inbox, color: Colors.pink),
                 title: isDense ? null : Text(_localizations.allSection),
-                trailing: isDense
+                trailing: isDense || _taskService.getAll.isEmpty
                     ? null
                     : Text(_taskService.getAll.length.toString()),
                 onTap: () => widget.changeIndex(0),
@@ -52,7 +52,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
               ListTile(
                 leading: const Icon(Icons.star, color: Colors.yellow),
                 title: isDense ? null : Text(_localizations.importantSection),
-                trailing: isDense
+                trailing: isDense || _taskService.getImportant.isEmpty
                     ? null
                     : Text(_taskService.getImportant.length.toString()),
                 onTap: () => widget.changeIndex(1),
@@ -61,7 +61,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
               ListTile(
                 leading: Icon(Icons.today, color: Colors.green[300]),
                 title: isDense ? null : Text(_localizations.todaySection),
-                trailing: isDense
+                trailing: isDense || _taskService.getToday.isEmpty
                     ? null
                     : Text(_taskService.getToday.length.toString()),
                 onTap: () => widget.changeIndex(2),
@@ -70,7 +70,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
               ListTile(
                 leading: const Icon(Icons.schedule, color: Colors.cyan),
                 title: isDense ? null : Text(_localizations.plannedSection),
-                trailing: isDense
+                trailing: isDense || _taskService.getPlanned.isEmpty
                     ? null
                     : Text(_taskService.getPlanned.length.toString()),
                 onTap: () => widget.changeIndex(3),
@@ -79,7 +79,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
               ListTile(
                 leading: const Icon(Icons.check, color: Colors.blue),
                 title: isDense ? null : Text(_localizations.completedSection),
-                trailing: isDense
+                trailing: isDense || _taskService.getCompleted.isEmpty
                     ? null
                     : Text(_taskService.getCompleted.length.toString()),
                 onTap: () => widget.changeIndex(4),

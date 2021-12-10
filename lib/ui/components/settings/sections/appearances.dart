@@ -6,17 +6,23 @@ import 'package:provider/provider.dart';
 
 class AppearancesSection extends StatefulWidget {
   const AppearancesSection({Key? key}) : super(key: key);
-
   @override
   _AppearancesSectionState createState() => _AppearancesSectionState();
 }
 
 class _AppearancesSectionState extends State<AppearancesSection> {
+  List<List> accentList = [
+    [Colors.blue, "blue"],
+    [Colors.red, "red"],
+    [Colors.green, "green"],
+    [Colors.yellow, "yellow"],
+    [Colors.purple, "purple"],
+  ];
+
   @override
   Widget build(BuildContext context) {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
-    final SettingsService _settingsService =
-        Provider.of<SettingsService>(context);
+    final SettingsService _settingsService = Provider.of<SettingsService>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -26,13 +32,37 @@ class _AppearancesSectionState extends State<AppearancesSection> {
           title: Text(_localizations.themeMode),
           trailing: Switch(
             splashRadius: 0.1,
-            activeColor: Colors.blue,
+            activeColor: _settingsService.accentColor,
             value: _settingsService.isDark,
             onChanged: (bool val) {
               _settingsService.toggleTheme();
             },
           ),
         ),
+        ListTile(
+          title: Text(_localizations.accentColor),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: accentList.map((m) {
+              return Container(
+                width: 30.0,
+                height: 30.0,
+                margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                  color: m[0],
+                  border: _settingsService.accentColor == m[0] 
+                    ? Border.all(width: 1.0, color: Colors.white) 
+                    : null,
+                ),
+                child: MaterialButton(
+                  hoverColor: Colors.transparent,
+                  onPressed: () => _settingsService.setAccentColor(m[1]),
+                ),
+              );
+            }).toList(),
+          )
+        )
       ],
     );
   }
