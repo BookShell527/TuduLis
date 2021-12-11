@@ -35,7 +35,7 @@ class _PlannedSectionState extends State<PlannedSection> {
               ),
             ),
             const Spacer(),
-            SortButton(changeSort: changeSort),
+            SortButton(changeSort: changeSort, sort: sort),
           ],
         ),
         AddTask(

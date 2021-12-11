@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         splashColor: Colors.transparent,
         primarySwatch: _settingsService.accentColor,
+        switchTheme: const SwitchThemeData(splashRadius: 0.1),
         checkboxTheme: CheckboxThemeData(
           splashRadius: 0.1,
           fillColor: MaterialStateProperty.resolveWith((states) {

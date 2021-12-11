@@ -5,6 +5,7 @@ import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/models/task.dart';
 import 'package:tudulis/my_app.dart';
+import 'package:window_size/window_size.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +13,9 @@ void main() async {
   await SettingsService.init();
   Store store = await openStore();
   Box<Task> taskBox = store.box<Task>();
+
+  setWindowTitle("TuduLis");
+  setWindowMinSize(const Size(630, 300));
 
   runApp(
     MultiProvider(

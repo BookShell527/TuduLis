@@ -80,8 +80,7 @@ class TaskTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (task.note.isNotEmpty) Text(task.note),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
+                    Wrap(
                       children: <Widget>[
                         if (task.dueDate != null)
                           TextButton.icon(

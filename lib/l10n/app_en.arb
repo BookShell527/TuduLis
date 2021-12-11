@@ -34,5 +34,6 @@
   "settingsTooltip": "Settings (Ctrl + comma)",
   "toggleDarkTooltip": "Toggle dark mode (Ctrl + d)",
   "maximizeSidebarTooltip": "Maximize sidebar (m)",
-  "minimizeSidebarTooltip": "Minimize sidebar (m)"
+  "minimizeSidebarTooltip": "Minimize sidebar (m)",
+  "section": "Section"
 }

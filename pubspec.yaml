@@ -21,6 +21,10 @@ dependencies:
   objectbox: ^1.2.0
   objectbox_flutter_libs: any
   shared_preferences: ^2.0.9
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
 
 dev_dependencies:
   flutter_test:

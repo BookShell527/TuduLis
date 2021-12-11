@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/ui/components/sidebar.dart';
 import 'package:tudulis/ui/sections/all.dart';
 import 'package:tudulis/ui/sections/completed.dart';
@@ -17,16 +19,17 @@ class _HomeState extends State<Home> {
   int stackIndex = 0;
   void _changeStackIndex(int newIndex) => setState(() => stackIndex = newIndex);
 
-  final List<Widget> sectionList = const <Widget>[
-    AllSection(),
-    ImportantSection(),
-    TodaySection(),
-    PlannedSection(),
-    CompletedSection(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final SettingsService _settingsService =
+        Provider.of<SettingsService>(context);
+    final List<Widget> sectionList = <Widget>[
+      const AllSection(),
+      if (_settingsService.getSection("important")) const ImportantSection(),
+      if (_settingsService.getSection("today")) const TodaySection(),
+      if (_settingsService.getSection("planned")) const PlannedSection(),
+      if (_settingsService.getSection("completed")) const CompletedSection(),
+    ];
     return Scaffold(
       body: Row(
         children: <Widget>[

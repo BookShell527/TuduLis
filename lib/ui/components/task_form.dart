@@ -71,7 +71,10 @@ class _TaskFormState extends State<TaskForm> {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
 
     void _handleSubmit() {
-      _taskService.putTask( id: widget.id, title: titleController.text, note: noteController.text,
+      _taskService.putTask(
+        id: widget.id,
+        title: titleController.text,
+        note: noteController.text,
         tags: widget.tags,
         dueDate: widget.dueDate,
         reminder: widget.reminder,
@@ -99,6 +102,7 @@ class _TaskFormState extends State<TaskForm> {
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 TextField(
                   decoration: _inputDecoration.copyWith(
@@ -119,8 +123,8 @@ class _TaskFormState extends State<TaskForm> {
                   ),
                   controller: noteController,
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: <Widget>[
                     TextButton(
                       onPressed:
@@ -184,7 +188,6 @@ class _TaskFormState extends State<TaskForm> {
                         widget.isImportant = !widget.isImportant;
                       }),
                     ),
-                    const Spacer(),
                     IconButton(
                       icon: Icon(
                         Icons.close,
@@ -195,7 +198,7 @@ class _TaskFormState extends State<TaskForm> {
                       onPressed: widget.toggleOpen,
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

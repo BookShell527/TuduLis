@@ -34,5 +34,6 @@
   "settingsTooltip": "Pengaturan (Ctrl + koma)",
   "toggleDarkTooltip": "Bertukar mode gelap (Ctrl +d)",
   "maximizeSidebarTooltip": "Besarkan sidebar (m)",
-  "minimizeSidebarTooltip": "Kecilkan sidebar (m)"
+  "minimizeSidebarTooltip": "Kecilkan sidebar (m)",
+  "section": "Bagian"
 }

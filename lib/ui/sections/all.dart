@@ -36,7 +36,7 @@ class _AllSectionState extends State<AllSection> {
               ),
             ),
             const Spacer(),
-            SortButton(changeSort: changeSort),
+            SortButton(changeSort: changeSort, sort: sort),
           ],
         ),
         const AddTask(),

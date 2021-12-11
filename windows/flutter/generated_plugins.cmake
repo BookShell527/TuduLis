@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   objectbox_flutter_libs
+  window_size
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

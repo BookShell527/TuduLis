@@ -43,7 +43,11 @@ class _TodaySectionState extends State<TodaySection> {
               ),
             ),
             const Spacer(),
-            SortButton(changeSort: changeSort, isTodaySection: true),
+            SortButton(
+              changeSort: changeSort,
+              isTodaySection: true,
+              sort: sort,
+            ),
           ],
         ),
         const SizedBox(height: 5.0),

@@ -33,10 +33,14 @@ class _SidebarState extends State<Sidebar> {
 
     final List<List> data = [
       [Icons.inbox, Colors.pink, _locale.allSection, _task.getAll],
-      [Icons.star, Colors.yellow, _locale.importantSection, _task.getImportant],
-      [Icons.today, Colors.green[300], _locale.todaySection, _task.getToday],
-      [Icons.schedule, Colors.cyan, _locale.plannedSection, _task.getPlanned],
-      [Icons.check, Colors.blue, _locale.completedSection, _task.getCompleted],
+      if (_settings.getSection("important"))
+        [Icons.star, Colors.yellow, _locale.importantSection, _task.getImportant],
+      if (_settings.getSection("today"))
+        [Icons.today, Colors.green[300], _locale.todaySection, _task.getToday],
+      if (_settings.getSection("planned"))
+        [Icons.schedule, Colors.cyan, _locale.plannedSection, _task.getPlanned],
+      if (_settings.getSection("completed"))
+        [Icons.check, Colors.blue, _locale.completedSection, _task.getCompleted],
     ];
 
     List<Widget> _generateBottomWidget() {

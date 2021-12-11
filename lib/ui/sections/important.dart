@@ -35,7 +35,11 @@ class _ImportantSectionState extends State<ImportantSection> {
               ),
             ),
             const Spacer(),
-            SortButton(changeSort: changeSort, isImportantSection: true),
+            SortButton(
+              changeSort: changeSort,
+              isImportantSection: true,
+              sort: sort,
+            ),
           ],
         ),
         const AddTask(isImportant: true),
