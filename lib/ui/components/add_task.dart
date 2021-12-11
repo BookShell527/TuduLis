@@ -24,27 +24,27 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
-    return isOpened
-        ? TaskForm(
-            toggleOpen: toggleOpen,
-            isImportant: widget.isImportant ?? false,
-            isCompleted: widget.isCompleted ?? false,
-            dueDate: widget.dueDate,
-          )
-        : SizedBox(
-            width: double.infinity,
-            child: TextButton.icon(
-              style: ButtonStyle(
-                overlayColor: MaterialStateProperty.resolveWith((states) {
-                  if (states.any({MaterialState.pressed}.contains)) {
-                    return Colors.transparent;
-                  }
-                }),
-              ),
-              icon: const Icon(Icons.add),
-              onPressed: toggleOpen,
-              label: Text(_localizations.addTask),
-            ),
-          );
+    if (isOpened) {
+      return TaskForm(
+        toggleOpen: toggleOpen,
+        isImportant: widget.isImportant ?? false,
+        isCompleted: widget.isCompleted ?? false,
+        dueDate: widget.dueDate,
+      );
+    }
+    return SizedBox(
+      width: double.infinity,
+      child: TextButton.icon(
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith((states) {
+            Set interStates = {MaterialState.pressed};
+            if (states.any(interStates.contains)) return Colors.transparent;
+          }),
+        ),
+        icon: const Icon(Icons.add),
+        onPressed: toggleOpen,
+        label: Text(_localizations.addTask),
+      ),
+    );
   }
 }

@@ -30,3 +30,9 @@
 # Community
 
 # Localisation
+
+# Plan
+- [ ] Adding shortcuts
+- [ ] Adding option to show which section is showed
+- [ ] Improve TaskTile performance
+- [ ] Adding acrylic effect?

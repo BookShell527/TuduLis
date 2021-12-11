@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/models/task.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/task_service.dart';
@@ -24,22 +25,26 @@ class TaskTile extends StatelessWidget {
         Provider.of<SettingsService>(context);
     final bool _isWithSubtitle =
         task.dueDate != null || task.note.isNotEmpty || task.reminder != null;
+    final AppLocalizations _localizations = AppLocalizations.of(context)!;
     return RightClickMenu(
       items: <PopupMenuItem>[
         PopupMenuItem(
           padding: const EdgeInsets.symmetric(horizontal: 0.0),
-          child: const ListTile(
-            leading: Icon(Icons.edit),
-            title: Text("Edit"),
+          child: ListTile(
+            leading: const Icon(Icons.edit),
+            title: Text(_localizations.edit),
             mouseCursor: SystemMouseCursors.click,
           ),
           onTap: toggleOpen,
         ),
         PopupMenuItem(
           padding: const EdgeInsets.symmetric(horizontal: 0.0),
-          child: const ListTile(
-            leading: Icon(Icons.delete, color: Colors.red),
-            title: Text("Delete", style: TextStyle(color: Colors.red)),
+          child: ListTile(
+            leading: const Icon(Icons.delete, color: Colors.red),
+            title: Text(
+              _localizations.delete,
+              style: const TextStyle(color: Colors.red),
+            ),
             mouseCursor: SystemMouseCursors.click,
           ),
           onTap: () => _taskService.deleteTask(task.id),

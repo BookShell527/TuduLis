@@ -28,5 +28,11 @@
   "no": "No",
   "areYouSure": "Are you sure?",
   "themeMode": "Theme Mode",
-  "accentColor": "Accent Color"
+  "accentColor": "Accent Color",
+  "delete": "Delete",
+  "edit": "Edit",
+  "settingsTooltip": "Settings (Ctrl + comma)",
+  "toggleDarkTooltip": "Toggle dark mode (Ctrl + d)",
+  "maximizeSidebarTooltip": "Maximize sidebar (m)",
+  "minimizeSidebarTooltip": "Minimize sidebar (m)"
 }

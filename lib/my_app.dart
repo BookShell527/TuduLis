@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:tudulis/ui/home.dart';
 import 'package:provider/provider.dart';
+import 'package:tudulis/ui/home.dart';
 import 'package:tudulis/services/settings_service.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SettingsService _settingsService = Provider.of<SettingsService>(context);
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
         brightness: isDark ? Brightness.dark : Brightness.light,
         drawerTheme: DrawerThemeData(
           backgroundColor: Colors.grey[isDark ? 900 : 100],
+        ),
+        listTileTheme: ListTileThemeData(
+          selectedTileColor: Colors.grey[isDark ? 800 : 200],
         ),
         splashColor: Colors.transparent,
         primarySwatch: _settingsService.accentColor,

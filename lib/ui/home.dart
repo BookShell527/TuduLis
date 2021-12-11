@@ -15,8 +15,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int stackIndex = 0;
-
   void _changeStackIndex(int newIndex) => setState(() => stackIndex = newIndex);
+
+  final List<Widget> sectionList = const <Widget>[
+    AllSection(),
+    ImportantSection(),
+    TodaySection(),
+    PlannedSection(),
+    CompletedSection(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +40,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: IndexedStack(
                   index: stackIndex,
-                  children: const <Widget>[
-                    AllSection(),
-                    ImportantSection(),
-                    TodaySection(),
-                    PlannedSection(),
-                    CompletedSection(),
-                  ],
+                  children: sectionList,
                 ),
               ),
             ),

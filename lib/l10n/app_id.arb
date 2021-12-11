@@ -28,5 +28,11 @@
   "no": "Tidak",
   "areYouSure": "Apakah anda yakin?",
   "themeMode": "Mode Tema",
-  "accentColor": "Warna Pokok"
+  "accentColor": "Warna Pokok",
+  "delete": "Hapus",
+  "edit": "Ubah",
+  "settingsTooltip": "Pengaturan (Ctrl + koma)",
+  "toggleDarkTooltip": "Bertukar mode gelap (Ctrl +d)",
+  "maximizeSidebarTooltip": "Besarkan sidebar (m)",
+  "minimizeSidebarTooltip": "Kecilkan sidebar (m)"
 }
