@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tudulis/models/task.dart';
+import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/ui/components/task_tile/task_wrapper.dart';
 
 class TaskList extends StatelessWidget {
@@ -14,6 +16,8 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsService _settingsService = Provider.of<SettingsService>(context);
+
     if (sort == "Created") {
       taskList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     } else if (sort == "Last Edited") {
@@ -32,16 +36,16 @@ class TaskList extends StatelessWidget {
         return a.dueDate!.compareTo(b.dueDate!);
       });
     }
-    taskList.sort((a, b) => a.isCompleted == true ? 1 : -1);
+    if (_settingsService.isCompletedBelow) {
+      taskList.sort((a, b) => a.isCompleted == true ? 1 : -1);
+    }
 
     return Expanded(
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: taskList.length,
-        itemBuilder: (BuildContext context, int i) => TaskWrapper(
-          task: taskList[i],
-        ),
+        itemBuilder: (_, int i) => TaskWrapper(task: taskList[i]),
       ),
     );
   }

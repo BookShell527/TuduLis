@@ -24,13 +24,12 @@ class _CompletedSectionState extends State<CompletedSection> {
         Row(
           children: <Widget>[
             Text(
-              _localizations.completedSection,
+              _localizations.completedSect,
               style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const Spacer(),
           ],
         ),
         const AddTask(isCompleted: true),

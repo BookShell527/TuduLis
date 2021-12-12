@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/ui/components/add_task.dart';
 import 'package:tudulis/ui/components/sort_button.dart';
@@ -14,13 +15,12 @@ class AllSection extends StatefulWidget {
 }
 
 class _AllSectionState extends State<AllSection> {
-  String sort = "Created";
-  void changeSort(String newSort) => setState(() => sort = newSort);
-
   @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
+    final SettingsService _settingsService =
+        Provider.of<SettingsService>(context);
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -29,19 +29,27 @@ class _AllSectionState extends State<AllSection> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              _localizations.allSection,
+              _localizations.allSect,
               style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w600,
               ),
             ),
             const Spacer(),
-            SortButton(changeSort: changeSort, sort: sort),
+            SortButton(
+              changeSort: (String val) {
+                _settingsService.setSectionSort("all", val);
+              },
+              sort: _settingsService.getSectionSort("all"),
+            ),
           ],
         ),
         const AddTask(),
         const SizedBox(height: 5.0),
-        TaskList(taskList: _taskService.getAll, sort: sort),
+        TaskList(
+          taskList: _taskService.getAll,
+          sort: _settingsService.getSectionSort("all"),
+        ),
       ],
     );
   }

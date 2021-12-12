@@ -14,10 +14,10 @@ class GeneralSection extends StatelessWidget {
     SettingsService _settingsService = Provider.of<SettingsService>(context);
 
     final List<List<String>> sectionSettingsData = [
-      ["important", _localizations.importantSection],
-      ["today", _localizations.todaySection],
-      ["planned", _localizations.plannedSection],
-      ["completed", _localizations.completedSection]
+      ["important", _localizations.importantSect],
+      ["today", _localizations.todaySect],
+      ["planned", _localizations.plannedSect],
+      ["completed", _localizations.completedSect]
     ];
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -66,6 +66,14 @@ class GeneralSection extends StatelessWidget {
                         value: e.languageCode,
                       );
                     }).toList(),
+                  ),
+                ),
+                ListTile(
+                  title: Text(_localizations.placeCompletedInBottom),
+                  trailing: Switch(
+                    activeColor: _settingsService.accentColor,
+                    value: _settingsService.isCompletedBelow,
+                    onChanged: (_) => _settingsService.toggleCompletedBelow(),
                   ),
                 ),
                 ExpansionTile(

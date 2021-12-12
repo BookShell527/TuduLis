@@ -11,8 +11,7 @@
   - [Mac OS](#mac-os)
   - [Android](#android)
   - [IOS](#ios)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
+- [Documentation](#documentation) [Contributing](#contributing)
 - [Community](#community)
 - [Localisation](#localisation)
 
@@ -32,7 +31,7 @@
 # Localisation
 
 # Plan
-- [ ] Adding shortcuts
-- [ ] Adding option to show which section is showed
+- [x] Adding shortcuts
+- [x] Adding option to show which section is showed
 - [ ] Improve TaskTile performance
 - [ ] Adding acrylic effect?

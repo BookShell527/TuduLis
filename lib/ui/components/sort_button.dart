@@ -26,6 +26,7 @@ class SortButton extends StatelessWidget {
       if (!isImportantSection) ["Important", _localizations.important],
       if (!isTodaySection) ["Due date", _localizations.dueDate],
     ];
+
     return PopupMenuButton(
       icon: const Icon(Icons.sort),
       onSelected: changeSort,

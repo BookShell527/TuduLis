@@ -1,9 +1,4 @@
 {
-  "allSection": "Semua",
-  "importantSection": "Penting",
-  "todaySection": "Hari ini",
-  "plannedSection": "Terjadwal",
-  "completedSection": "Selesai",
   "today": "Hari ini",
   "tomorrow": "Besok",
   "yesterday": "Kemarin",
@@ -35,5 +30,11 @@
   "toggleDarkTooltip": "Bertukar mode gelap (Ctrl +d)",
   "maximizeSidebarTooltip": "Besarkan sidebar (m)",
   "minimizeSidebarTooltip": "Kecilkan sidebar (m)",
-  "section": "Bagian"
+  "section": "Bagian",
+  "placeCompletedInBottom": "Taruh Tugas yang Terselesaikan di Bawah",
+  "todaySect": "Hari ini",
+  "plannedSect": "Terjadwal",
+  "importantSect": "Penting",
+  "completedSect": "Selesai",
+  "allSect": "Semua"
 }

@@ -19,44 +19,35 @@ class _SettingsDialogState extends State<SettingsDialog> {
   Widget build(BuildContext context) {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
 
-    List<Widget> sectionList = <Widget>[
-      ListTile(
-        title: Text(_localizations.general),
-        onTap: () => changeIndex(0),
-        leading: const Icon(Icons.settings),
-        selected: stackIndex == 0,
-      ),
-      ListTile(
-        title: Text(_localizations.appearances),
-        onTap: () => changeIndex(1),
-        leading: const Icon(Icons.palette),
-        selected: stackIndex == 1,
-      ),
+    final List<List> sectionData = [
+      [_localizations.general, Icons.settings],
+      [_localizations.appearances, Icons.palette],
     ];
-    return Dialog(
-      child: Row(
-        children: <Widget>[
-          FocusableActionDetector(
-            autofocus: true,
-            shortcuts: {
-              upSectionKeySet: UpSectionSettings(),
-              downSectionKeySet: DownSectionSettings(),
-              settingsKeySet: CloseSettings(),
-            },
-            actions: {
-              UpSectionSettings: CallbackAction(onInvoke: (_) {
-                if (stackIndex != 0) changeIndex(stackIndex - 1);
-              }),
-              DownSectionSettings: CallbackAction(onInvoke: (_) {
-                if (stackIndex != sectionList.length - 1) {
-                  changeIndex(stackIndex + 1);
-                }
-              }),
-              CloseSettings: CallbackAction(onInvoke: (_) {
-                Navigator.of(context).pop();
-              }),
-            },
-            child: SizedBox(
+
+    return FocusableActionDetector(
+      autofocus: true,
+      shortcuts: {
+        upSectionKeySet: UpSectionSettings(),
+        downSectionKeySet: DownSectionSettings(),
+        settingsKeySet: CloseSettings(),
+      },
+      actions: {
+        UpSectionSettings: CallbackAction(onInvoke: (_) {
+          if (stackIndex != 0) changeIndex(stackIndex - 1);
+        }),
+        DownSectionSettings: CallbackAction(onInvoke: (_) {
+          if (stackIndex != sectionData.length - 1) {
+            changeIndex(stackIndex + 1);
+          }
+        }),
+        CloseSettings: CallbackAction(onInvoke: (_) {
+          Navigator.of(context).pop();
+        }),
+      },
+      child: Dialog(
+        child: Row(
+          children: <Widget>[
+            SizedBox(
               width: 200.0,
               child: Drawer(
                 elevation: 0.0,
@@ -74,29 +65,35 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           style: const TextStyle(fontSize: 24.0),
                         ),
                       ),
-                      ...sectionList,
+                      for (int i = 0; i < sectionData.length; i++)
+                        ListTile(
+                          title: Text(sectionData[i][0]),
+                          onTap: () => changeIndex(i),
+                          leading: Icon(sectionData[i][1]),
+                          selected: stackIndex == i,
+                        ),
                     ],
                   ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15.0,
-                vertical: 4.0,
-              ),
-              child: IndexedStack(
-                index: stackIndex,
-                children: const <Widget>[
-                  GeneralSection(),
-                  AppearancesSection(),
-                ],
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0,
+                  vertical: 4.0,
+                ),
+                child: IndexedStack(
+                  index: stackIndex,
+                  children: const <Widget>[
+                    GeneralSection(),
+                    AppearancesSection(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

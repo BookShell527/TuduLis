@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/shared/format_date.dart';
 import 'package:tudulis/ui/components/add_task.dart';
 import 'package:provider/provider.dart';
@@ -15,13 +16,11 @@ class TodaySection extends StatefulWidget {
 }
 
 class _TodaySectionState extends State<TodaySection> {
-  String sort = "Created";
-  void changeSort(String newSort) => setState(() => sort = newSort);
-
   @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
+		final SettingsService _settingsService = Provider.of<SettingsService>(context);
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -32,7 +31,7 @@ class _TodaySectionState extends State<TodaySection> {
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                    text: _localizations.todaySection,
+                    text: _localizations.todaySect,
                     style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.w600,
@@ -44,9 +43,11 @@ class _TodaySectionState extends State<TodaySection> {
             ),
             const Spacer(),
             SortButton(
-              changeSort: changeSort,
               isTodaySection: true,
-              sort: sort,
+              changeSort: (String val) {
+                _settingsService.setSectionSort("today", val);
+              },
+              sort: _settingsService.getSectionSort("today"),
             ),
           ],
         ),
@@ -61,7 +62,7 @@ class _TodaySectionState extends State<TodaySection> {
           ),
         ),
         const SizedBox(height: 5.0),
-        TaskList(taskList: _taskService.getToday, sort: sort),
+        TaskList(taskList: _taskService.getToday, sort: _settingsService.getSectionSort("today")),
       ],
     );
   }

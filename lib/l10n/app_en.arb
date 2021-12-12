@@ -1,9 +1,4 @@
 {
-  "allSection": "All",
-  "importantSection": "Important",
-  "todaySection": "Today",
-  "plannedSection": "Planned",
-  "completedSection": "Completed",
   "today": "Today",
   "tomorrow": "Tomorrow",
   "yesterday": "Yesterday",
@@ -35,5 +30,11 @@
   "toggleDarkTooltip": "Toggle dark mode (Ctrl + d)",
   "maximizeSidebarTooltip": "Maximize sidebar (m)",
   "minimizeSidebarTooltip": "Minimize sidebar (m)",
-  "section": "Section"
+  "section": "Section",
+  "placeCompletedInBottom": "Place Completed in Bottom",
+  "todaySect": "Today",
+  "plannedSect": "Planned",
+  "importantSect": "Important",
+  "completedSect": "Completed",
+  "allSect": "All"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/ui/components/add_task.dart';
 import 'package:tudulis/ui/components/sort_button.dart';
 import 'package:tudulis/ui/components/task_list.dart';
@@ -14,13 +15,12 @@ class PlannedSection extends StatefulWidget {
 }
 
 class _PlannedSectionState extends State<PlannedSection> {
-  String sort = "Created";
-  void changeSort(String newSort) => setState(() => sort = newSort);
-
   @override
   Widget build(BuildContext context) {
     final TaskService _taskService = Provider.of<TaskService>(context);
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
+    final SettingsService _settingsService =
+        Provider.of<SettingsService>(context);
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -28,14 +28,19 @@ class _PlannedSectionState extends State<PlannedSection> {
         Row(
           children: <Widget>[
             Text(
-              _localizations.plannedSection,
+              _localizations.plannedSect,
               style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w600,
               ),
             ),
             const Spacer(),
-            SortButton(changeSort: changeSort, sort: sort),
+            SortButton(
+              changeSort: (String val) {
+                _settingsService.setSectionSort("planned", val);
+              },
+              sort: _settingsService.getSectionSort("planned"),
+            ),
           ],
         ),
         AddTask(
@@ -48,7 +53,10 @@ class _PlannedSectionState extends State<PlannedSection> {
           ),
         ),
         const SizedBox(height: 5.0),
-        TaskList(taskList: _taskService.getPlanned, sort: sort),
+        TaskList(
+          taskList: _taskService.getPlanned,
+          sort: _settingsService.getSectionSort("planned"),
+        ),
       ],
     );
   }

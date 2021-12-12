@@ -71,9 +71,7 @@ class TaskTile extends StatelessWidget {
             splashRadius: 0.1,
             onPressed: () => _taskService.toggleImportant(task),
           ),
-          onChanged: (val) {
-            _taskService.toggleCompleted(task, val!);
-          },
+          onChanged: (_) => _taskService.toggleCompleted(task),
           subtitle: !_isWithSubtitle
               ? null
               : Column(

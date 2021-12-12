@@ -40,8 +40,8 @@ class Task {
   @Property(type: PropertyType.date)
   DateTime? dueDate;
 
-  void toggleCompleted(bool newValue) {
-    isCompleted = newValue;
+  void toggleCompleted() {
+    isCompleted = !isCompleted;
     lastEditedAt = DateTime.now();
   }
 

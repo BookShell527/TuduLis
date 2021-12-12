@@ -35,8 +35,8 @@ class TaskService with ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleCompleted(Task task, bool newValue) {
-    task.toggleCompleted(newValue);
+  void toggleCompleted(Task task) {
+    task.toggleCompleted();
     taskBox.put(task);
     notifyListeners();
   }

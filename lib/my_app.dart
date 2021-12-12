@@ -7,7 +7,6 @@ import 'package:tudulis/services/settings_service.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     SettingsService _settingsService = Provider.of<SettingsService>(context);
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         AppLocalizations.delegate,
       ],
-      supportedLocales: const [
+      supportedLocales: const <Locale>[
         Locale('en'),
         Locale('id'),
       ],

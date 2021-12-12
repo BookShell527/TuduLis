@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:window_size/window_size.dart';
 import 'package:tudulis/objectbox.g.dart';
 import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/models/task.dart';
 import 'package:tudulis/my_app.dart';
-import 'package:window_size/window_size.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
