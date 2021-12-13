@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/settings_service.dart';
+import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/shared/keyset.dart';
+import 'package:tudulis/ui/components/section.dart';
 import 'package:tudulis/ui/components/settings/settings_dialog.dart';
 import 'package:tudulis/ui/components/sidebar.dart';
-import 'package:tudulis/ui/sections/all.dart';
-import 'package:tudulis/ui/sections/completed.dart';
-import 'package:tudulis/ui/sections/important.dart';
-import 'package:tudulis/ui/sections/today.dart';
-import 'package:tudulis/ui/sections/planned.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -24,14 +22,43 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations _localizations = AppLocalizations.of(context)!;
+    final TaskService _taskService = Provider.of<TaskService>(context);
     final SettingsService _settingsService =
         Provider.of<SettingsService>(context);
+
     final List<Widget> sectionList = <Widget>[
-      const AllSection(),
-      if (_settingsService.getSection("important")) const ImportantSection(),
-      if (_settingsService.getSection("today")) const TodaySection(),
-      if (_settingsService.getSection("planned")) const PlannedSection(),
-      if (_settingsService.getSection("completed")) const CompletedSection(),
+      Section(
+        title: _localizations.allSect,
+        section: "all",
+        taskList: _taskService.getAll,
+      ),
+      if (_settingsService.getSection("important"))
+        Section(
+          title: _localizations.importantSect,
+          section: "important",
+          taskList: _taskService.getImportant,
+        ),
+      if (_settingsService.getSection("today"))
+        Section(
+          title: _localizations.todaySect,
+          section: "today",
+          taskList: _taskService.getToday,
+          withDate: true,
+        ),
+      if (_settingsService.getSection("planned"))
+        Section(
+          title: _localizations.plannedSect,
+          section: "planned",
+          taskList: _taskService.getPlanned,
+        ),
+      if (_settingsService.getSection("completed"))
+        Section(
+          title: _localizations.completedSect,
+          section: "completed",
+          taskList: _taskService.getCompleted,
+          withSortButton: false,
+        ),
     ];
 
     return FocusableActionDetector(

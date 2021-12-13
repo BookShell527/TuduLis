@@ -9,8 +9,12 @@ final DateTime tomorrow = DateTime(now.year, now.month, now.day + 1);
 
 bool isOverdue(DateTime date) => date.compareTo(today).isNegative;
 
-String formatDate(BuildContext context, DateTime date,
-    {bool isReminder = false}) {
+String formatDate(
+  BuildContext context,
+  DateTime date, {
+  bool isReminder = false,
+  bool showDateNumber = false,
+}) {
   final AppLocalizations localizations = AppLocalizations.of(context)!;
 
   final bool isDefault = (date.hour == 23 && date.minute == 59) && !isReminder;
@@ -27,8 +31,10 @@ String formatDate(BuildContext context, DateTime date,
     return localizations.tomorrow + hourAndMinute;
   } else if (date.day == yesterday.day) {
     return "Overdue, " + localizations.yesterday + hourAndMinute;
-  } else if (date.day == today.day) {
+  } else if ((date.day == today.day) && showDateNumber) {
+    return defaultDateFormat;
+	} else if (date.day == today.day) {
     return localizations.today + hourAndMinute;
-  }
+	}
   return (isOverdue(date) ? "Overdue, " : "") + defaultDateFormat;
 }
