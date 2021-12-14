@@ -16,6 +16,12 @@ class MyApp extends StatelessWidget {
         drawerTheme: DrawerThemeData(
           backgroundColor: Colors.grey[isDark ? 900 : 100],
         ),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: Colors.grey[isDark ? 800 : 200],
+          contentTextStyle: TextStyle(
+            color: isDark ? Colors.white : Colors.black,
+          ),
+        ),
         listTileTheme: ListTileThemeData(
           selectedTileColor: Colors.grey[isDark ? 800 : 200],
         ),

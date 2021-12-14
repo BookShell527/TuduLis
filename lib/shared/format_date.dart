@@ -30,8 +30,8 @@ String formatDate(
     return localizations.tomorrow + hourAndMinute;
   } else if (date.day == yesterday.day) {
     return "Overdue, " + localizations.yesterday + hourAndMinute;
-  } else if (date.day == today.day) {
+	} else if (date.day == today.day) {
     return localizations.today + hourAndMinute;
-  }
+	}
   return (isOverdue(date) ? "Overdue, " : "") + defaultDateFormat;
 }

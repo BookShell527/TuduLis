@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/services/settings_service.dart';
@@ -69,8 +70,10 @@ class _HomeState extends State<Home> {
         downSectionKeySet: DownSection(),
         toggleDarkThemeKeySet: ToggleDarkTheme(),
         toggleSidebarKeySet: ToggleSidebar(),
+        closeAppKeySet: CloseApp(),
       },
       actions: {
+        CloseApp: CallbackAction(onInvoke: (_) => SystemNavigator.pop()),
         ToggleDarkTheme: CallbackAction(onInvoke: (_) {
           _settingsService.toggleTheme();
         }),

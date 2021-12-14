@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:tudulis/models/task.dart';
 import 'package:provider/provider.dart';
+import 'package:tudulis/models/task.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/services/settings_service.dart';
 import 'package:tudulis/shared/format_date.dart';
@@ -47,7 +47,33 @@ class TaskTile extends StatelessWidget {
             ),
             mouseCursor: SystemMouseCursors.click,
           ),
-          onTap: () => _taskService.deleteTask(task.id),
+          onTap: () {
+            _taskService.deleteTask(task.id);
+            if (_settingsService.showDeleteMessage) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('"${task.title}" ${_localizations.isRemoved}'),
+                  behavior: SnackBarBehavior.floating,
+                  width: MediaQuery.of(context).size.width / 4,
+                  action: SnackBarAction(
+                    label: _localizations.undo,
+                    onPressed: () {
+                      _taskService.putTask(
+                        id: task.id,
+                        note: task.note,
+                        isImportant: task.isImportant,
+                        tags: task.tags,
+                        title: task.title,
+                        isCompleted: task.isCompleted,
+                        dueDate: task.dueDate,
+                        reminder: task.reminder,
+                      );
+                    },
+                  ),
+                ),
+              );
+            }
+          },
         ),
       ],
       child: Card(

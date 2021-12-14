@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/ui/components/settings/sections/appearances.dart';
 import 'package:tudulis/ui/components/settings/sections/general.dart';
 import 'package:tudulis/shared/keyset.dart';
+import 'package:tudulis/ui/components/settings/sections/task.dart';
 
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
     final List<List> sectionData = [
       [_localizations.general, Icons.settings],
       [_localizations.appearances, Icons.palette],
+			[_localizations.task, Icons.check],
     ];
 
     return FocusableActionDetector(
@@ -88,6 +90,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                   children: const <Widget>[
                     GeneralSection(),
                     AppearancesSection(),
+										TaskSection(),
                   ],
                 ),
               ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/shared/format_date.dart';
 import 'package:tudulis/services/task_service.dart';
 import 'package:tudulis/services/settings_service.dart';
 import 'package:provider/provider.dart';
 import 'package:tudulis/shared/date_picker.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //ignore: must_be_immutable
 class TaskForm extends StatefulWidget {
@@ -57,9 +57,7 @@ class _TaskFormState extends State<TaskForm> {
   void initState() {
     noteController = TextEditingController(text: widget.note);
     titleController = TextEditingController(text: widget.title)
-      ..addListener(() {
-        setState(() {});
-      });
+      ..addListener(() => setState(() {}));
     super.initState();
   }
 

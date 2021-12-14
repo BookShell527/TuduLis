@@ -28,13 +28,17 @@
   "edit": "Edit",
   "settingsTooltip": "Settings (Ctrl + comma)",
   "toggleDarkTooltip": "Toggle dark mode (Ctrl + d)",
-  "maximizeSidebarTooltip": "Maximize sidebar (m)",
-  "minimizeSidebarTooltip": "Minimize sidebar (m)",
+  "maximizeSidebarTooltip": "Maximize sidebar (Ctrl + m)",
+  "minimizeSidebarTooltip": "Minimize sidebar (Ctrl + m)",
   "section": "Section",
   "placeCompletedInBottom": "Place Completed in Bottom",
   "todaySect": "Today",
   "plannedSect": "Planned",
   "importantSect": "Important",
   "completedSect": "Completed",
-  "allSect": "All"
+  "allSect": "All",
+  "isRemoved": "is Removed",
+  "undo": "Undo",
+  "task": "Task",
+  "showDeleteMessage": "Show Delete Task Message"
 }

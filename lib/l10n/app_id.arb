@@ -28,13 +28,17 @@
   "edit": "Ubah",
   "settingsTooltip": "Pengaturan (Ctrl + koma)",
   "toggleDarkTooltip": "Bertukar mode gelap (Ctrl +d)",
-  "maximizeSidebarTooltip": "Besarkan sidebar (m)",
-  "minimizeSidebarTooltip": "Kecilkan sidebar (m)",
+  "maximizeSidebarTooltip": "Besarkan sidebar (Ctrl + m)",
+  "minimizeSidebarTooltip": "Kecilkan sidebar (Ctrl + m)",
   "section": "Bagian",
   "placeCompletedInBottom": "Taruh Tugas yang Terselesaikan di Bawah",
   "todaySect": "Hari ini",
   "plannedSect": "Terjadwal",
   "importantSect": "Penting",
   "completedSect": "Selesai",
-  "allSect": "Semua"
+  "allSect": "Semua",
+  "isRemoved": "telah Dihapus",
+  "undo": "Kembalikan",
+  "task": "Tugas",
+  "showDeleteMessage": "Tunjukkan Pesan saat Menghapus Tugas"
 }

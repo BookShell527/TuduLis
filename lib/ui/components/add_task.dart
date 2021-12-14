@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tudulis/ui/components/task_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tudulis/ui/components/task_form.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({
@@ -18,13 +18,13 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
-  bool isOpened = false;
-  void toggleOpen() => setState(() => isOpened = !isOpened);
+  bool _isOpened = false;
+  void toggleOpen() => setState(() => _isOpened = !_isOpened);
 
   @override
   Widget build(BuildContext context) {
     final AppLocalizations _localizations = AppLocalizations.of(context)!;
-    if (isOpened) {
+    if (_isOpened) {
       return TaskForm(
         toggleOpen: toggleOpen,
         isImportant: widget.isImportant ?? false,

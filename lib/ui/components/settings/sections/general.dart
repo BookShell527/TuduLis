@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tudulis/shared/format_language_code.dart';
 import 'package:tudulis/ui/components/settings/settings_title.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tudulis/services/settings_service.dart';
 
 class GeneralSection extends StatelessWidget {
@@ -68,29 +68,18 @@ class GeneralSection extends StatelessWidget {
                     }).toList(),
                   ),
                 ),
-                ListTile(
-                  title: Text(_localizations.placeCompletedInBottom),
-                  trailing: Switch(
-                    activeColor: _settingsService.accentColor,
-                    value: _settingsService.isCompletedBelow,
-                    onChanged: (_) => _settingsService.toggleCompletedBelow(),
-                  ),
-                ),
                 ExpansionTile(
                   title: Text(_localizations.section),
                   initiallyExpanded: true,
                   textColor: Colors.white,
                   iconColor: Colors.grey[400],
                   children: sectionSettingsData.map((m) {
-                    return ListTile(
+                    return SwitchListTile(
                       title: Text(m[1], style: const TextStyle(fontSize: 14.0)),
                       dense: true,
-                      selectedColor: Colors.white,
-                      trailing: Switch(
-                        value: _settingsService.getSection(m[0]),
-                        activeColor: _settingsService.accentColor,
-                        onChanged: (_) => _settingsService.toggleSection(m[0]),
-                      ),
+                      value: _settingsService.getSection(m[0]),
+                      activeColor: _settingsService.accentColor,
+                      onChanged: (_) => _settingsService.toggleSection(m[0]),
                     );
                   }).toList(),
                 ),

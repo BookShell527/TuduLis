@@ -30,13 +30,11 @@ class AppearancesSection extends StatelessWidget {
           child: ListView(
             shrinkWrap: true,
             children: [
-              ListTile(
+              SwitchListTile(
                 title: Text(_localizations.themeMode),
-                trailing: Switch(
-                  activeColor: _settingsService.accentColor,
-                  value: _settingsService.isDark,
-                  onChanged: (_) => _settingsService.toggleTheme(),
-                ),
+                activeColor: _settingsService.accentColor,
+                value: _settingsService.isDark,
+                onChanged: (_) => _settingsService.toggleTheme(),
               ),
               ListTile(
                   title: Text(_localizations.accentColor),

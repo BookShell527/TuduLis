@@ -27,8 +27,7 @@ class Task {
   bool isCompleted;
   List<String> tags;
 
-  // Objectbox only only support List<String> data type
-  // So we need to convert date time to String
+  @Property(type: PropertyType.date)
   DateTime? reminder;
 
   @Property(type: PropertyType.date)

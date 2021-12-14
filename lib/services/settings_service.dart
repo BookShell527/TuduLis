@@ -139,4 +139,13 @@ class SettingsService with ChangeNotifier {
     }
     notifyListeners();
   }
+
+	// Snackbar message
+	bool _showDeleteMessage = _pref.getBool("showDeleteMessage") ?? true;
+	bool get showDeleteMessage => _showDeleteMessage;
+	void toggleShowDeleteMessage() {
+		_showDeleteMessage = !_showDeleteMessage;
+		notifyListeners();
+		_pref.setBool("showDeleteMessage", _showDeleteMessage);
+	}
 }
